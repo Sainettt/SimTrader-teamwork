@@ -101,4 +101,4 @@ Aby uruchomić projekt lokalnie, potrzebujesz:
 * `server/prisma/schema.prisma` - Definicja modelu bazy danych.
 
 ## 7. Autor
-[Danyil Fiut]
+[Danyil Fiut, Mykyta Tolstykh]
