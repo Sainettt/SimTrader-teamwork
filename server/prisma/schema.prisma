@@ -1,0 +1,80 @@
+generator client {
+  provider      = "prisma-client-js"
+  // "native" — чтобы работало на вашем Windows/Mac
+  // "linux-musl-openssl-3.0.x" — чтобы работало в Docker (Alpine)
+  binaryTargets = ["native", "linux-musl-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  username  String
+  email     String   @unique
+  password  String?
+  createdAt DateTime @default(now())
+
+  wallet    Wallet? 
+  bankCard  BankCard?
+}
+
+model Wallet {
+  id          Int     @id @default(autoincrement())
+  
+  balanceUsd  Float   @default(0.0) 
+  walletUid   String  @unique @default(uuid()) 
+
+  userId      Int     @unique
+  user        User    @relation(fields: [userId], references: [id])
+
+  assets      Asset[]
+  transactions Transaction[]
+}
+
+model Asset {
+  id        Int     @id @default(autoincrement())
+  currency  String
+  balance   Float   @default(0.0)
+
+  walletId  Int
+  wallet    Wallet  @relation(fields: [walletId], references: [id])
+
+  @@unique([walletId, currency])
+}
+
+enum TransactionType {
+  BUY         
+  SELL        
+  DEPOSIT     
+  WITHDRAWAL 
+}
+
+model Transaction {
+  id        String   @id @default(uuid())
+  
+  type      TransactionType
+  
+  currency  String 
+  amount    Float 
+  price     Float  
+  totalUsd  Float
+
+  createdAt DateTime @default(now())
+
+  walletId  Int
+  wallet    Wallet   @relation(fields: [walletId], references: [id])
+}
+
+model BankCard {
+  id         Int    @id @default(autoincrement())
+  cardNumber String
+  balance    Float  @default(10000.0)
+  cvv        String
+  expiry     String
+
+  userId     Int    @unique
+  user       User   @relation(fields: [userId], references: [id])
+}
