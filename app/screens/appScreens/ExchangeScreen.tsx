@@ -189,7 +189,6 @@ const ExchangeScreen: React.FC<ExchangeScreenProps> = ({
 
         <View style={styles.mainCintentContainer}>
           <View>
-            {/* Price */}
             <View style={styles.priceContainer}>
               <Text style={styles.totalLabel}>Current Price</Text>
               <Text style={styles.bigPrice}>${currentPrice}</Text>
@@ -208,7 +207,6 @@ const ExchangeScreen: React.FC<ExchangeScreenProps> = ({
               </View>
             </View>
 
-            {/* Balances */}
             <View style={styles.balanceContainerWrapper}>
               <Text style={styles.balanceInfoText}>
                 Your {symbol}:{' '}

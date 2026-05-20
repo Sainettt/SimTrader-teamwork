@@ -71,7 +71,6 @@ $api.interceptors.response.use(
   }
 );
 
-// --- API METHODS ---
 export const authAPI = {
     async registration(userName: string, email: string, password: string) {
         const response = await $api.post('auth/registration', { userName, email, password });

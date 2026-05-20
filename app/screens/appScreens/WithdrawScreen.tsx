@@ -99,8 +99,7 @@ const WithdrawScreen = ({ navigation }: any) => {
             <UpperText title="Withdraw USD" onPress={() => navigation.goBack()} />
 
             <View style={styles.content}>
-                
-                {/* Блок с балансом и лейблом */}
+
                 <View style={styles.balanceHeader}>
                     <Text style={styles.label}>Amount to withdraw ($)</Text>
                     

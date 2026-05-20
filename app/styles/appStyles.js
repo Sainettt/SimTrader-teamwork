@@ -236,7 +236,6 @@ export const appStyles = StyleSheet.create({
   spinerForRootNavigator: {
     flex: 1, justifyContent: 'center', alignItems: 'center',
   },
-  // Standardized Input and Badge styles
   inputRow: {
     flexDirection: 'row',
     justifyContent: 'center',

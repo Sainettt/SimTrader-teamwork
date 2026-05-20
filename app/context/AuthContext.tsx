@@ -3,7 +3,6 @@ import { authAPI, setAuthToken } from '../services/api';
 import { Alert } from 'react-native';
 import * as Keychain from 'react-native-keychain';
 import { GoogleSignin, statusCodes, isErrorWithCode } from '@react-native-google-signin/google-signin';
-// 1. Описываем тип для UserInfo (можно вынести в отдельный файл types.ts)
 type UserInfo = {
   id: number;
   username: string;
@@ -14,7 +13,7 @@ type AuthContextType = {
   isLoggedIn: boolean;
   token: string | null;
   userId: number | null;
-  userInfo: UserInfo | null; // <--- Добавили поле
+  userInfo: UserInfo | null;
   isLoading: boolean;
   isSplashLoading: boolean;
   login: (email: string, password: string) => Promise<void>;
@@ -31,7 +30,7 @@ export const AuthContext = createContext<AuthContextType>({
   isLoggedIn: false,
   token: null,
   userId: null,
-  userInfo: null, // <--- Инициализация
+  userInfo: null,
   isLoading: false,
   isSplashLoading: true,
   login: async () => {},
@@ -44,7 +43,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [token, setToken] = useState<string | null>(null);
   const [userId, setUserId] = useState<number | null>(null);
-  const [userInfo, setUserInfo] = useState<UserInfo | null>(null); // <--- Стейт для данных
+  const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isSplashLoading, setIsSplashLoading] = useState(true);
 
@@ -165,10 +164,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     try {
       setIsLoading(true);
       
-      // Проверяем сервисы
       await GoogleSignin.hasPlayServices();
-      
-      // Открываем шторку выбора аккаунта
+
       const userInfoResponse = await GoogleSignin.signIn();
       
       if (!userInfoResponse.data) {
@@ -178,11 +175,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
       if (!idToken) throw new Error('No ID token found');
 
-      // 5. Отправляем данные НА НАШ СЕРВЕР (через api.ts)
-      // В user.name может быть null, поэтому подстрахуемся
       const data = await authAPI.googleLogin(idToken, user.email, user.name || 'User');
 
-      // 6. Если наш сервер ответил успехом, сохраняем сессию
       if (data.token && data.user) {
         await saveSession(data.token, data.user);
       } else {

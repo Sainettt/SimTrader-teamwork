@@ -96,7 +96,6 @@ export const TradePanel: React.FC<TradePanelProps> = ({
 
     return (
         <View style={styles.container}>
-            {/* Switch Buy / Sell */}
             <View style={styles.switchContainer}>
                 <TouchableOpacity 
                     style={[styles.switchButton, isBuy && styles.activeBuyButton]} 
@@ -112,7 +111,6 @@ export const TradePanel: React.FC<TradePanelProps> = ({
                 </TouchableOpacity>
             </View>
 
-            {/* Input */}
             <View style={styles.inputContainer}>
                 <TextInput 
                     style={styles.input} 
@@ -125,7 +123,6 @@ export const TradePanel: React.FC<TradePanelProps> = ({
                 <Text style={styles.currencySuffix}>USD</Text>
             </View>
 
-            {/* Info Row */}
             <View style={styles.infoRow}>
                  <Text style={styles.infoText}>Price: ${currentPrice}</Text>
                  <Text style={styles.infoText}>
@@ -136,8 +133,7 @@ export const TradePanel: React.FC<TradePanelProps> = ({
                  </Text>
             </View>
 
-            {/* Action Button */}
-            <TouchableOpacity 
+            <TouchableOpacity
                 style={[styles.actionButton, isBuy ? appStyles.greenBackGroudColor : appStyles.redBackGroudColor]}
                 onPress={handleTradePress}
                 disabled={isLoading}
@@ -151,7 +147,6 @@ export const TradePanel: React.FC<TradePanelProps> = ({
                 )}
             </TouchableOpacity>
 
-            {/* === MODAL === */}
             <Modal
                 animationType="fade"
                 transparent={true}
@@ -281,8 +276,7 @@ const styles = StyleSheet.create({
     },
     actionButtonText: { fontSize: 16, fontFamily: 'Poppins-Bold', color: '#1E1E1E' },
     cryptoAmountText: {color:'#fff', fontWeight: 'bold'},
-    
-    // Modal Styles (Compact)
+
     modalOverlay: { flex: 1, backgroundColor: 'rgba(0, 0, 0, 0.7)', justifyContent: 'center', alignItems: 'center' },
     modalContainer: { width: '85%', backgroundColor: '#3C3C3C', borderRadius: 20, padding: 20, alignItems: 'center', borderWidth: 1, borderColor: '#454545', elevation: 5 },
     modalTitle: { fontSize: 20, fontFamily: 'Poppins-Bold', color: '#FFFFFF', marginBottom: 5 },

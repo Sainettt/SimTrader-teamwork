@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import bcrypt from 'bcryptjs';
-import authService, { UserWithDetails } from '../services/authService'; // Импорт типа
+import authService, { UserWithDetails } from '../services/authService';
 import { isValidEmail, isValidPassword } from '../utils/validation';
 import crypto from 'node:crypto';
 import { AuthRequest } from '../middleware/authMiddleware';

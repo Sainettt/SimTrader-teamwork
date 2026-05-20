@@ -2,14 +2,12 @@ import jwt from 'jsonwebtoken';
 import prisma from '../prisma';
 import { User, Wallet, BankCard } from '@prisma/client';
 
-// Определяем составной тип
 export type UserWithDetails = User & {
   bankCard: BankCard | null;
   wallet: Wallet | null;
 };
 
 class AuthService {
-  // --- Утилиты для генерации данных ---
   private generateFakeCardNumber() {
     const part = () => Math.floor(1000 + Math.random() * 9000);
     return `4276 ${part()} ${part()} ${part()}`;
@@ -25,7 +23,6 @@ class AuthService {
     return `${month}/${year}`;
   }
 
-  // --- Основная логика ---
   generateJwt(id: number, email: string, userName: string, createdAt: Date) {
     const secret = process.env.JWT_SECRET_KEY;
     if (!secret) throw new Error('JWT_SECRET_KEY is not defined');
@@ -77,18 +74,12 @@ class AuthService {
     return user as UserWithDetails;
   }
 
-  /**
-   * ИСПРАВЛЕНО: Теперь возвращает Promise<string>, так как мы гарантируем создание
-   */
   async ensureWalletAndCard(user: UserWithDetails): Promise<string> {
-    // 1. Если все есть, возвращаем сразу
     if (user.bankCard && user.wallet) {
       return user.wallet.walletUid;
     }
 
-    // 2. Если чего-то нет, создаем в транзакции
     return await prisma.$transaction(async (tx) => {
-      // Проверяем и создаем карту
       if (!user.bankCard) {
         await tx.bankCard.create({
           data: {
@@ -102,7 +93,6 @@ class AuthService {
         console.log(`[Service Fix] Created missing bank card for user ${user.id}`);
       }
 
-      // Проверяем и создаем кошелек (или возвращаем существующий)
       if (user.wallet) {
         return user.wallet.walletUid;
       } else {

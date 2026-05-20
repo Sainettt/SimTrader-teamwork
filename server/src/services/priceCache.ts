@@ -36,7 +36,7 @@ export const startPriceUpdater = () => {
     cron.schedule('*/5 * * * * *', async () => {
         try {
             const { data } = await binanceApi.get('/ticker/24hr');
-            // 1. Here we are dont use filter. For all data to wallet (with USDC for exmpl)
+            // Cache every ticker unfiltered — the wallet needs prices for all coins (e.g. USDC)
             data.forEach((ticker: BinanceTicker) => {
                 priceCache[ticker.symbol] = {
                     price: parseFloat(ticker.lastPrice),
@@ -44,7 +44,7 @@ export const startPriceUpdater = () => {
                 };
             });
 
-            // 2. Filter data for main and all assets screens
+            // Filtered list for the market screens (top coins only)
             const marketPairs = data.filter((t: BinanceTicker) => {
 
                 if (!t.symbol.endsWith('USDT')) return false;

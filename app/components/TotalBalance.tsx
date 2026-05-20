@@ -32,7 +32,6 @@ const TotalBalance: React.FC<TotalBalanceProps> = ({
             </View>
             
             <View style={styles.container}>
-                {/* Balance */}
                 <View style={styles.textBlock}>
                     {loading ? (
                          <ActivityIndicator size="large" color="#83EDA6" style={styles.marginBalance} />
@@ -49,7 +48,6 @@ const TotalBalance: React.FC<TotalBalanceProps> = ({
                     )}
                 </View>
 
-                {/* Buttons TopUp and WithDraw */}
                 <View style={styles.buttonsContainer}>
                     <TouchableOpacity style={styles.actionButton} onPress={onTopUpPress}>
                         <Text style={styles.buttonText}>Top Up</Text>

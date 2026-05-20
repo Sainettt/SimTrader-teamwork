@@ -2,9 +2,6 @@ import prisma from '../prisma';
 import { getTickerFromCache } from './priceCache';
 
 class WalletService {
-    /**
-     * Пополнение баланса кошелька с банковской карты
-     */
     async topUp(userId: number, amount: number) {
         const card = await prisma.bankCard.findUnique({ where: { userId } });
         if (!card || card.balance < amount) {
@@ -23,9 +20,6 @@ class WalletService {
         });
     }
 
-    /**
-     * Вывод средств с кошелька на карту
-     */
     async withdraw(userId: number, amount: number) {
         const wallet = await prisma.wallet.findUnique({ where: { userId } });
         if (!wallet || wallet.balanceUsd < amount) throw new Error('INSUFFICIENT_WALLET_FUNDS');
@@ -42,9 +36,6 @@ class WalletService {
         });
     }
 
-    /**
-     * Расчет данных портфеля (Бизнес-логика)
-     */
     async calculatePortfolio(userId: number) {
         const wallet = await prisma.wallet.findUnique({
             where: { userId },
@@ -95,7 +86,6 @@ class WalletService {
             };
         });
 
-        // Добавляем саму валюту USD как актив, если баланс > 0
         if (wallet.balanceUsd > 0 && !detailedAssets.some(a => a.symbol === 'USD')) {
             detailedAssets.unshift({
                 id: 'usd-main',

@@ -308,7 +308,6 @@ const localStyles = StyleSheet.create({
     color: '#333',
   },
 
-  // --- Styles for Modal ---
   modalOverlay: {
     flex: 1,
     backgroundColor: 'rgba(0, 0, 0, 0.7)',

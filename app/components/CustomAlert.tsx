@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
   },
   alertBox: {
     width: 300,
-    backgroundColor: '#1E1E1E', // Цвет фона вашего приложения
+    backgroundColor: '#1E1E1E',
     borderRadius: 15,
     padding: 20,
     alignItems: 'center',

@@ -1,50 +1,37 @@
 import binanceApi from './binanceApi';
 import { getTopCoinsFromCache, CoinData } from './priceCache';
 
-// 1. Описываем структуру курса
 interface SymbolPrice {
     symbol: string;
     price: string;
 }
 
-// 2. Описываем элемент графика
 interface ChartItem {
     timestamp: number;
     value: number;
 }
 
-// 3. Описываем итоговый объект истории
 interface HistoryResponse {
     data: ChartItem[];
     changePercent: string;
     changeValue: string;
 }
 
-// Тип для Kline (свечи) от Binance: 
-// [0] OpenTime, [1] Open, [2] High, [3] Low, [4] Close, [5] Volume...
+// Binance Kline (candle) tuple: [0] OpenTime, [1] Open, [2] High, [3] Low, [4] Close, [5] Volume...
 type BinanceKline = [number, string, string, string, string, string, ...unknown[]];
 
 class CurrencyService {
-    /**
-     * Получение топа монет из кэша
-     */
     getTopCoins(limit: number): CoinData[] {
         return getTopCoinsFromCache(limit);
     }
 
-    /**
-     * Получение текущего курса конкретной монеты
-     */
     async getPrice(symbol: string): Promise<SymbolPrice> {
         const response = await binanceApi.get<SymbolPrice>('/ticker/price', {
             params: { symbol }
         });
         return response.data;
     }
-    //asdasdsad
-    /**
-     * Логика получения истории цен и расчет статистики
-     */
+
     async getHistoryData(symbol: string, period: string): Promise<HistoryResponse> {
         const pair = symbol.toUpperCase().endsWith('USDT') ? symbol : `${symbol}USDT`;
 
@@ -64,13 +51,11 @@ class CurrencyService {
             params: { symbol: pair, interval, limit }
         });
 
-        // Форматирование данных
         const chartData: ChartItem[] = response.data.map((item) => ({
-            timestamp: item[0], // Open time
-            value: parseFloat(item[4]) // Close price
+            timestamp: item[0],
+            value: parseFloat(item[4])
         }));
 
-        // Расчет изменения
         const firstPrice = chartData[0].value;
         const lastPrice = chartData[chartData.length - 1].value;
         const changeValue = lastPrice - firstPrice;

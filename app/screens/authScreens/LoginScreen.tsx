@@ -20,7 +20,6 @@ import GoogleButton from '../../components/GoogleButton';
 type Props = NativeStackScreenProps<AuthStackParamList, 'Login'>;
 
 const LoginScreen: React.FC<Props> = ({ navigation }: Props) => {
-  // 2. Достаем loginWithGoogle из контекста
   const { login, isLoading, loginWithGoogle } = useContext(AuthContext);
   
   const [username, setUsername] = useState('');
@@ -59,17 +58,14 @@ const LoginScreen: React.FC<Props> = ({ navigation }: Props) => {
           <ActivityIndicator size="large" color="#0000ff" />
         ) : (
           <View style={authStyles.authContainer}>
-            {/* Основная кнопка входа */}
             <AuthSubmitButton buttonText="Sign In" onPress={handleLogin} />
 
-            {/* Разделитель */}
             <View style={authStyles.separatorContainer}>
               <View style={authStyles.separatorLine} />
               <Text style={authStyles.separatorText}>OR</Text>
               <View style={authStyles.separatorLine} />
             </View>
 
-            {/* 3. Кнопка Google Sign-In */}
             <GoogleButton onPress={loginWithGoogle} disabled={isLoading} />
           </View>
         )}
