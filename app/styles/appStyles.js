@@ -22,7 +22,7 @@ export const appStyles = StyleSheet.create({
     fontFamily: 'Poppins-Bold',
     color: '#FFFFFF',
     includeFontPadding: false,
-    textAlignVertical: 'center', 
+    textAlignVertical: 'center',
     lineHeight: moderateScale(50),
   },
   viewAllText: {
@@ -46,17 +46,17 @@ export const appStyles = StyleSheet.create({
     color: '#EEEEEE',
   },
   currencyNameAndPriceText: {
-    fontSize: moderateScale(20),
+    fontSize: moderateScale(18),
     fontFamily: 'Poppins-Regular',
     color: '#FFFFFF',
   },
   currencyChangeText: {
-    fontSize: moderateScale(14),
+    fontSize: moderateScale(13),
     fontFamily: 'Poppins-Medium',
     color: '#FFFFFF',
   },
   emptyListText: {
-    textAlign: 'center', padding: moderateScale(20), color: 'gray'
+    textAlign: 'center', padding: moderateScale(20), color: 'gray',
   },
   priceCurrencyTextAndTotalValue: {
     fontSize: moderateScale(32),
@@ -82,7 +82,7 @@ export const appStyles = StyleSheet.create({
 
   topUpButton: {
     width: scale(115),
-    height: verticalScale(50),
+    height: moderateScale(50),
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#83EDA6',
@@ -90,7 +90,7 @@ export const appStyles = StyleSheet.create({
   },
   viewAllButton: {
     width: scale(130),
-    height: verticalScale(35),
+    height: moderateScale(35),
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#636363',
@@ -109,7 +109,6 @@ export const appStyles = StyleSheet.create({
   containerWithoutPadding: {
     flex: 1,
     backgroundColor: '#3C3C3C',
-    paddingTop: verticalScale(30),
   },
   balanceContainer: {
     justifyContent: 'space-between',
@@ -119,52 +118,54 @@ export const appStyles = StyleSheet.create({
   },
   headerContainer: {
     alignItems: 'center',
-    marginBottom: verticalScale(20),
-    marginTop: verticalScale(10),
+    marginBottom: verticalScale(15),
+    marginTop: verticalScale(5),
   },
   totalBalanceContainer: {
     marginTop: verticalScale(10),
   },
   viewAllContainer: {
     alignItems: 'center',
-    marginTop: verticalScale(15),
+    marginTop: verticalScale(12),
+    marginBottom: verticalScale(8),
   },
   bottomBarContainer: {
     width: '100%',
-    height: verticalScale(100),
     backgroundColor: '#636363',
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
+    paddingVertical: moderateScale(12),
   },
   infoTrendHeaderContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     marginBottom: verticalScale(5),
-    marginTop: verticalScale(35),
+    marginTop: verticalScale(20),
     paddingHorizontal: scale(15),
   },
   trendHeaderContainer: {
+    flex: 1,
     width: '100%',
-    height: verticalScale(460),
     borderRadius: moderateScale(10),
     backgroundColor: '#636363',
+    overflow: 'hidden',
   },
   upperTextContainer: {
     flexDirection: 'row',
-    justifyContent: 'center',     
+    justifyContent: 'center',
     alignItems: 'center',
-    height: verticalScale(50),
+    height: moderateScale(50),
     position: 'relative',
   },
   paymentMethodContainer: {
     width: scale(290),
-    height: verticalScale(80),
-    backgroundColor: '#3C3C3C', 
+    height: moderateScale(80),
+    backgroundColor: '#3C3C3C',
     borderRadius: moderateScale(10),
     borderWidth: 1,
-    borderColor: '#636363', 
+    borderColor: '#636363',
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -172,8 +173,7 @@ export const appStyles = StyleSheet.create({
   },
   currencyChangePositiveContainer: {
     width: scale(55),
-    height: verticalScale(30),
-    marginBottom: verticalScale(5),
+    height: moderateScale(28),
     backgroundColor: '#83EDA6',
     borderRadius: moderateScale(10),
     alignItems: 'center',
@@ -181,8 +181,7 @@ export const appStyles = StyleSheet.create({
   },
   currencyChangeNegativeContainer: {
     width: scale(55),
-    height: verticalScale(30),
-    marginBottom: verticalScale(5),
+    height: moderateScale(28),
     backgroundColor: '#EB5B5B',
     borderRadius: moderateScale(10),
     alignItems: 'center',
@@ -190,20 +189,18 @@ export const appStyles = StyleSheet.create({
   },
   selectedtimeIntervalContainer: {
     width: scale(50),
-    height: verticalScale(30),
+    height: moderateScale(30),
     backgroundColor: '#5B5A5A',
     justifyContent: 'center',
     alignItems: 'center',
   },
   topUpContinueButton: {
     width: scale(230),
-    height: verticalScale(50),
+    height: moderateScale(50),
     backgroundColor: '#83EDA6',
     borderRadius: moderateScale(10),
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: verticalScale(210),
-    position: 'relative',
   },
 
   title: {
@@ -217,27 +214,27 @@ export const appStyles = StyleSheet.create({
   backButton: {
     position: 'absolute',
     left: scale(10),
-    padding: moderateScale(10), 
+    padding: moderateScale(10),
   },
   indicatorStyle: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
-  greenBackGroudColor : {
-    backgroundColor: '#83EDA6'
+  greenBackGroudColor: {
+    backgroundColor: '#83EDA6',
   },
   redBackGroudColor: {
-    backgroundColor: '#EB5B5B'
+    backgroundColor: '#EB5B5B',
   },
   green: {
-    color: '#83EDA6'
+    color: '#83EDA6',
   },
   red: {
-    color: '#EB5B5B'
+    color: '#EB5B5B',
   },
   spinerForRootNavigator: {
-    flex: 1, justifyContent: 'center', alignItems: 'center'
+    flex: 1, justifyContent: 'center', alignItems: 'center',
   },
   // Standardized Input and Badge styles
   inputRow: {
@@ -251,8 +248,8 @@ export const appStyles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: moderateScale(8),
     backgroundColor: '#3C3C3C',
-    paddingVertical: verticalScale(5),
-    paddingHorizontal: scale(12),
+    paddingVertical: moderateScale(5),
+    paddingHorizontal: moderateScale(12),
   },
   currencyBadgeSecondary: {
     backgroundColor: '#2A2A2A',
@@ -268,4 +265,3 @@ export const appStyles = StyleSheet.create({
     color: '#AAAAAA',
   },
 });
-

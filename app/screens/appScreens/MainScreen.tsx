@@ -1,5 +1,6 @@
 import React, { useState, useContext, useCallback, useRef} from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useFocusEffect } from '@react-navigation/native';
 import { appStyles } from '../../styles/appStyles';
 import InfoTrendCurrencies from '../../components/InfoTrendCurrencies';
@@ -55,7 +56,7 @@ const MainScreen: React.FC<MainProps> = ({ navigation }: MainProps) => {
       };
       fetchData();
 
-      const intervalId = setInterval(fetchData, 5000);
+      const intervalId = setInterval(fetchData, 15000);
 
       return () => {
         isActive = false;
@@ -64,33 +65,38 @@ const MainScreen: React.FC<MainProps> = ({ navigation }: MainProps) => {
 
     }, [userId])
   );
-  const handleCurrencyPress = (item: any) => {
+  const handleCurrencyPress = useCallback((item: any) => {
+    const asset = portfolioAssets.find((a: any) => a.symbol === item.name);
+    const ownedAmount = asset ? asset.amount : 0;
 
-      const asset = portfolioAssets.find((a: any) => a.symbol === item.name);
-      const ownedAmount = asset ? asset.amount : 0;
-      
-      const params = {
-          coinId: item.id,       
-          symbol: item.name,     
-          name: item.name,       
-          currentPrice: item.price,
-          priceChange: item.change,
-          ownedAmount: ownedAmount
-    };
-    console.log(item.name)
-      navigation.navigate('Exchange', params);
-  };
+    navigation.navigate('Exchange', {
+      coinId: item.id,
+      symbol: item.name,
+      name: item.name,
+      currentPrice: item.price,
+      priceChange: item.change,
+      ownedAmount: ownedAmount,
+    });
+  }, [navigation, portfolioAssets]);
+
+  const goToPaymentMethod = useCallback(() => navigation.navigate('PaymentMethod'), [navigation]);
+  const goToWithdraw = useCallback(() => navigation.navigate('Withdraw'), [navigation]);
+  const goToAllAssets = useCallback(() => navigation.navigate('AllCryptoAssets'), [navigation]);
+  const goToWallet = useCallback(() => navigation.navigate('Wallet'), [navigation]);
+  const goToHistory = useCallback(() => navigation.navigate('TransactionHistory'), [navigation]);
+  const goToSettings = useCallback(() => navigation.navigate('Settings'), [navigation]);
+  const noop = useCallback(() => {}, []);
 
   return (
-    <View style={appStyles.flexContainer}>
+    <SafeAreaView style={appStyles.flexContainer} edges={['top', 'left', 'right']}>
       <View style={appStyles.container}>
         <View style={appStyles.headerContainer}>
           <Text style={appStyles.titleHeader}>Trending currencies</Text>
         </View>
         <TotalBalance
           balance={totalBalance}
-          onTopUpPress={() => navigation.navigate('PaymentMethod')}
-          onWithdrawPress={() => navigation.navigate('Withdraw')}
+          onTopUpPress={goToPaymentMethod}
+          onWithdrawPress={goToWithdraw}
           changeValue={portfolioStats.val}
           changePercent={portfolioStats.pct}
           loading={loading}
@@ -99,23 +105,19 @@ const MainScreen: React.FC<MainProps> = ({ navigation }: MainProps) => {
         <View style={appStyles.viewAllContainer}>
           <TouchableOpacity
             style={appStyles.viewAllButton}
-            onPress={() => {
-              navigation.navigate('AllCryptoAssets');
-            }}
+            onPress={goToAllAssets}
           >
             <Text style={appStyles.viewAllText}>View All</Text>
           </TouchableOpacity>
         </View>
       </View>
       <BottomBar
-        homePress={() => {}}
-        walletPress={() => navigation.navigate('Wallet')}
-        transactionPress={() => {navigation.navigate('TransactionHistory')}}
-        settingsPress={() => {
-          navigation.navigate('Settings');
-        }}
+        homePress={noop}
+        walletPress={goToWallet}
+        transactionPress={goToHistory}
+        settingsPress={goToSettings}
       />
-    </View>
+    </SafeAreaView>
   );
 };
 export default MainScreen;

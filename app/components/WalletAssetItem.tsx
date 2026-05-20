@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { moderateScale, scale, verticalScale } from '../utils/responsive';
 
 type Asset = {
   id: string;
@@ -17,21 +18,25 @@ type Props = {
   onPress?: (item: Asset) => void;
 };
 
-const WalletAssetItem: React.FC<Props> = ({ item, onPress }) => {
+const formatHoldings = (num: number) => {
+  const str = num.toString();
+  if (str.length > 8) return str.slice(0, 8).replace(/[.,]$/, '');
+  return str;
+};
+
+const WalletAssetItem: React.FC<Props> = React.memo(({ item, onPress }) => {
   const isPositive = item.change >= 0;
   const sign = item.change > 0 ? '+' : '';
   const changeVal = item.changeValue ? item.changeValue.toFixed(2) : "0.00";
 
-  const formatHoldings = (num: number) => {
-    const str = num.toString();
-    if (str.length > 8) return str.slice(0, 8).replace(/[.,]$/, '');
-    return str;
-  };
+  const handlePress = React.useCallback(() => {
+    onPress?.(item);
+  }, [onPress, item]);
 
   return (
-    <TouchableOpacity 
-      style={styles.itemContainer} 
-      onPress={() => onPress && onPress(item)}
+    <TouchableOpacity
+      style={styles.itemContainer}
+      onPress={handlePress}
     >
       <View style={styles.leftSide}>
         <Text style={styles.assetSymbol}>{item.symbol}</Text>
@@ -54,31 +59,31 @@ const WalletAssetItem: React.FC<Props> = ({ item, onPress }) => {
       </View>
     </TouchableOpacity>
   );
-};
+});
 
 const styles = StyleSheet.create({
   itemContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingVertical: 15,
-    paddingHorizontal: 10,
+    paddingVertical: verticalScale(12),
+    paddingHorizontal: scale(10),
     borderBottomWidth: 1,
-    borderBottomColor: '#4A4A4A', 
+    borderBottomColor: '#4A4A4A',
   },
   leftSide: { flex: 1, alignItems: 'flex-start' },
   centerSide: { flex: 1, alignItems: 'center' },
   rightSide: { flex: 1, alignItems: 'flex-end' },
-  
-  assetSymbol: { fontSize: 20, fontFamily: 'Poppins-Regular', color: '#FFFFFF' },
-  assetAmount: { fontSize: 18, fontFamily: 'Poppins-Regular', color: '#FFFFFF' },
-  assetValue: { fontSize: 18, fontFamily: 'Poppins-Regular', color: '#FFFFFF' },
-  
+
+  assetSymbol: { fontSize: moderateScale(18), fontFamily: 'Poppins-Regular', color: '#FFFFFF' },
+  assetAmount: { fontSize: moderateScale(16), fontFamily: 'Poppins-Regular', color: '#FFFFFF' },
+  assetValue: { fontSize: moderateScale(16), fontFamily: 'Poppins-Regular', color: '#FFFFFF' },
+
   assetChange: {
-      fontSize: 12,
-      fontFamily: 'Poppins-Medium',
-      marginTop: 2,
-  }
+    fontSize: moderateScale(11),
+    fontFamily: 'Poppins-Medium',
+    marginTop: 2,
+  },
 });
 
 export default WalletAssetItem;

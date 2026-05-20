@@ -1,5 +1,6 @@
 import React, { useState, useCallback, useRef, useContext } from 'react';
-import { View, FlatList, Text, ActivityIndicator } from 'react-native';
+import { View, FlatList, ListRenderItem, Text, ActivityIndicator } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useFocusEffect } from '@react-navigation/native';
 import BottomBar from '../../components/BottomBar';
 import { appStyles } from '../../styles/appStyles';
@@ -50,7 +51,7 @@ const AllCryptoAssetsScreen: React.FC<AllCurrenciesProps> = ({
       };
       fetchAllCurrencies();
 
-      const intervalId = setInterval(fetchAllCurrencies, 10000);
+      const intervalId = setInterval(fetchAllCurrencies, 30000);
 
       return () => {
         isActive = false;
@@ -58,27 +59,37 @@ const AllCryptoAssetsScreen: React.FC<AllCurrenciesProps> = ({
       };
     }, [userId]),
   );
-  const handleCurrencyPress = (item: any) => {
+  const handleCurrencyPress = useCallback((item: Currency) => {
     const asset = portfolioAssets.find((a: any) => a.symbol === item.name);
     const ownedAmount = asset ? asset.amount : 0;
 
-    const params = {
+    navigation.navigate('Exchange', {
       coinId: item.id,
       symbol: item.name,
       name: item.name,
       currentPrice: item.price,
       priceChange: item.change,
       ownedAmount: ownedAmount,
-    };
-    navigation.navigate('Exchange', params);
-  };
+    });
+  }, [navigation, portfolioAssets]);
+
+  const renderItem = useCallback<ListRenderItem<Currency>>(
+    ({ item }) => <CurrencyItem item={item} onPressItem={handleCurrencyPress} />,
+    [handleCurrencyPress],
+  );
+
+  const goToMain = useCallback(() => navigation.navigate('Main'), [navigation]);
+  const goToWallet = useCallback(() => navigation.navigate('Wallet'), [navigation]);
+  const goToHistory = useCallback(() => navigation.navigate('TransactionHistory'), [navigation]);
+  const goToSettings = useCallback(() => navigation.navigate('Settings'), [navigation]);
+  const goBack = useCallback(() => navigation.goBack(), [navigation]);
 
   return (
-    <View style={appStyles.flexContainer}>
+    <SafeAreaView style={appStyles.flexContainer} edges={['top', 'left', 'right']}>
       <View style={appStyles.containerWithoutPadding}>
         <UpperText
           title="All Crypto Assets"
-          onPress={() => navigation.goBack()}
+          onPress={goBack}
         />
         {loading && allCryptoAssets.length === 0 ? (
           <View style={appStyles.indicatorStyle}>
@@ -87,14 +98,13 @@ const AllCryptoAssetsScreen: React.FC<AllCurrenciesProps> = ({
         ) : (
           <FlatList
             data={allCryptoAssets}
-            renderItem={({ item }) => (
-              <CurrencyItem item={item} onPressItem={handleCurrencyPress} />
-            )}
+            renderItem={renderItem}
             keyExtractor={item => item.id}
             showsVerticalScrollIndicator={false}
             initialNumToRender={20}
             maxToRenderPerBatch={10}
             windowSize={5}
+            removeClippedSubviews
             ListEmptyComponent={
               <Text style={appStyles.emptyListText}>Loading data...</Text>
             }
@@ -102,18 +112,12 @@ const AllCryptoAssetsScreen: React.FC<AllCurrenciesProps> = ({
         )}
       </View>
       <BottomBar
-        homePress={() => navigation.navigate('Main')}
-        walletPress={() => {
-          navigation.navigate('Wallet');
-        }}
-        transactionPress={() => {
-          navigation.navigate('TransactionHistory');
-        }}
-        settingsPress={() => {
-          navigation.navigate('Settings');
-        }}
+        homePress={goToMain}
+        walletPress={goToWallet}
+        transactionPress={goToHistory}
+        settingsPress={goToSettings}
       />
-    </View>
+    </SafeAreaView>
   );
 };
 export default AllCryptoAssetsScreen;

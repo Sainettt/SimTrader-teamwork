@@ -1,11 +1,13 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import BottomBar from '../../components/BottomBar';
 import { appStyles } from '../../styles/appStyles';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { AppStackParamList } from '../../src/navigation/appTypes';
 import UpperText from '../../components/UpperText';
 import PaymentMethodContainer from '../../components/PaymentMethodContainer';
+import { moderateScale, verticalScale } from '../../utils/responsive';
 
 type PaymentMethodProps = NativeStackScreenProps<
   AppStackParamList,
@@ -14,7 +16,7 @@ type PaymentMethodProps = NativeStackScreenProps<
 
 const PaymentMethodScreen: React.FC<PaymentMethodProps> = ({ navigation }) => {
   return (
-    <View style={appStyles.flexContainer}>
+    <SafeAreaView style={appStyles.flexContainer} edges={['top', 'left', 'right']}>
       <View style={appStyles.container}>
         <UpperText
           title="Fund your wallet"
@@ -53,36 +55,36 @@ const PaymentMethodScreen: React.FC<PaymentMethodProps> = ({ navigation }) => {
           navigation.navigate('Settings');
         }}
       />
-    </View>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   logoApplePayContainer: {
-    width: 70,
-    height: 70,
-    marginRight: 15,
+    width: moderateScale(70),
+    height: moderateScale(70),
+    marginRight: moderateScale(15),
   },
   logoBlikContainer: {
-    width: 70,
-    height: 40,
-    marginRight: 15,
+    width: moderateScale(70),
+    height: moderateScale(40),
+    marginRight: moderateScale(15),
   },
   textSelectMethod: {
-    fontSize: 20,
+    fontSize: moderateScale(20),
     fontFamily: 'Poppins-Bold',
     color: '#FFFFFF',
   },
   marginTextSelectMethod: {
-    marginTop: 65,
+    marginTop: verticalScale(40),
   },
   textPaymentMethod: {
-    fontSize: 15,
+    fontSize: moderateScale(15),
     fontFamily: 'Poppins-Regular',
     color: '#FFFFFF',
   },
   marginTextPaymentMethod: {
-    marginTop: 25,
+    marginTop: verticalScale(20),
   },
 });
 export default PaymentMethodScreen;

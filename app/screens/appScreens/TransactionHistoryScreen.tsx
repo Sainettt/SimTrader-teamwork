@@ -1,5 +1,5 @@
 import React, { useState, useContext, useCallback } from 'react';
-import { View, FlatList, Text, ActivityIndicator, StyleSheet } from 'react-native';
+import { View, FlatList, ListRenderItem, Text, ActivityIndicator, StyleSheet } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -10,6 +10,7 @@ import TransactionItem from '../../components/TransactionItem';
 
 import { AuthContext } from '../../context/AuthContext';
 import { walletAPI } from '../../services/api';
+import { moderateScale, scale, verticalScale } from '../../utils/responsive';
 
 const TransactionHistoryScreen = ({ navigation }: any) => {
   const { userId } = useContext(AuthContext);
@@ -42,15 +43,28 @@ const TransactionHistoryScreen = ({ navigation }: any) => {
     }, [userId])
   );
 
+  const renderItem = useCallback<ListRenderItem<any>>(
+    ({ item }) => <TransactionItem item={item} />,
+    [],
+  );
+
+  const keyExtractor = useCallback((item: any) => item.id.toString(), []);
+
+  const goBack = useCallback(() => navigation.goBack(), [navigation]);
+  const goToMain = useCallback(() => navigation.navigate('Main'), [navigation]);
+  const goToWallet = useCallback(() => navigation.navigate('Wallet'), [navigation]);
+  const goToSettings = useCallback(() => navigation.navigate('Settings'), [navigation]);
+  const noop = useCallback(() => {}, []);
+
   return (
-    <SafeAreaView 
-        style={appStyles.containerWithoutPadding} 
+    <SafeAreaView
+        style={appStyles.containerWithoutPadding}
         edges={['top', 'left', 'right']}
     >
-      
-      <UpperText 
-        title="History" 
-        onPress={() => navigation.goBack()} 
+
+      <UpperText
+        title="History"
+        onPress={goBack}
       />
 
       <View style={appStyles.flexContainer}>
@@ -61,10 +75,11 @@ const TransactionHistoryScreen = ({ navigation }: any) => {
         ) : (
             <FlatList
                 data={transactions}
-                keyExtractor={(item: any) => item.id.toString()}
-                renderItem={({ item }) => <TransactionItem item={item} />}
+                keyExtractor={keyExtractor}
+                renderItem={renderItem}
                 contentContainerStyle={styles.contentContainerStyle}
                 showsVerticalScrollIndicator={false}
+                removeClippedSubviews
                 ListEmptyComponent={
                     <View style={styles.center}>
                         <Text style={styles.emptyText}>No transactions yet</Text>
@@ -76,12 +91,10 @@ const TransactionHistoryScreen = ({ navigation }: any) => {
 
       <View>
         <BottomBar
-            homePress={() => navigation.navigate('Main')}
-            walletPress={() => navigation.navigate('Wallet')}
-            transactionPress={() => {}}
-            settingsPress={() => {
-          navigation.navigate('Settings');
-        }}
+            homePress={goToMain}
+            walletPress={goToWallet}
+            transactionPress={noop}
+            settingsPress={goToSettings}
         />
       </View>
 
@@ -94,14 +107,17 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 50,
+        marginTop: verticalScale(40),
     },
     emptyText: {
         color: '#777',
         fontFamily: 'Poppins-Regular',
-        fontSize: 16,
+        fontSize: moderateScale(16),
     },
-    contentContainerStyle: { paddingHorizontal: 20, paddingBottom: 20 },
+    contentContainerStyle: {
+        paddingHorizontal: scale(20),
+        paddingBottom: verticalScale(20),
+    },
 });
 
 export default TransactionHistoryScreen;

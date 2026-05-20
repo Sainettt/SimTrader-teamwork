@@ -1,5 +1,5 @@
-import React, { createContext, useState, ReactNode, useEffect } from 'react';
-import { authAPI } from '../services/api';
+import React, { createContext, useState, ReactNode, useEffect, useMemo, useCallback } from 'react';
+import { authAPI, setAuthToken } from '../services/api';
 import { Alert } from 'react-native';
 import * as Keychain from 'react-native-keychain';
 import { GoogleSignin, statusCodes, isErrorWithCode } from '@react-native-google-signin/google-signin';
@@ -48,11 +48,36 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isSplashLoading, setIsSplashLoading] = useState(true);
 
-  useEffect(() => {
+  const saveSession = useCallback(async (newToken: string, newUser: UserInfo) => {
+    try {
+      await Keychain.setGenericPassword(String(newUser.id), newToken);
+      setAuthToken(newToken);
+      setToken(newToken);
+      setUserId(newUser.id);
+      setUserInfo(newUser);
+      setIsLoggedIn(true);
+    } catch (e) {
+      console.log('Error saving to keychain', e);
+    }
+  }, []);
 
+  const logout = useCallback(async () => {
+    try {
+      await GoogleSignin.signOut();
+      await Keychain.resetGenericPassword();
+      setAuthToken(null);
+      setToken(null);
+      setUserId(null);
+      setUserInfo(null);
+      setIsLoggedIn(false);
+    } catch (e) {
+      console.log('Logout error', e);
+    }
+  }, []);
+
+  useEffect(() => {
     GoogleSignin.configure({
-      // Here you should put your actual Web Client ID from Google Cloud Console
-      webClientId: '356867902645-k2kuaubk84cjmg1ngom4nqts9dfnljl0.apps.googleusercontent.com', 
+      webClientId: '356867902645-k2kuaubk84cjmg1ngom4nqts9dfnljl0.apps.googleusercontent.com',
       offlineAccess: true,
       scopes: ['profile', 'email'],
     });
@@ -63,8 +88,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
         if (credentials) {
           const savedToken = credentials.password;
-
+          setAuthToken(savedToken);
           setToken(savedToken);
+
           const data = await authAPI.check();
 
           if (data.user) {
@@ -74,6 +100,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
           if (data.token) {
             await Keychain.setGenericPassword(String(data.user.id), data.token);
+            setAuthToken(data.token);
             setToken(data.token);
           }
 
@@ -88,22 +115,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     };
 
     loadSession();
-  }, []);
+  }, [logout]);
 
-  const saveSession = async (newToken: string, newUser: UserInfo) => {
-    try {
-      await Keychain.setGenericPassword(String(newUser.id), newToken);
-
-      setToken(newToken);
-      setUserId(newUser.id);
-      setUserInfo(newUser); 
-      setIsLoggedIn(true);
-    } catch (e) {
-      console.log('Error saving to keychain', e);
-    }
-  };
-
-  const login = async (email: string, password: string) => {
+  const login = useCallback(async (email: string, password: string) => {
     try {
       setIsLoading(true);
       const data = await authAPI.login(email, password);
@@ -122,9 +136,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [saveSession]);
 
-  const register = async (
+  const register = useCallback(async (
     userName: string,
     email: string,
     password: string,
@@ -145,9 +159,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [saveSession]);
 
-  const loginWithGoogle = async () => {
+  const loginWithGoogle = useCallback(async () => {
     try {
       setIsLoading(true);
       
@@ -197,36 +211,23 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [saveSession]);
 
-  const logout = async () => {
-    try {
-      await GoogleSignin.signOut();
-      await Keychain.resetGenericPassword();
-      setToken(null);
-      setUserId(null);
-      setUserInfo(null); // <--- Очищаем
-      setIsLoggedIn(false);
-    } catch (e) {
-      console.log('Logout error', e);
-    }
-  };
+  const value = useMemo(() => ({
+    isLoggedIn,
+    token,
+    userId,
+    userInfo,
+    isLoading,
+    isSplashLoading,
+    login,
+    register,
+    logout,
+    loginWithGoogle,
+  }), [isLoggedIn, token, userId, userInfo, isLoading, isSplashLoading, login, register, logout, loginWithGoogle]);
 
   return (
-    <AuthContext.Provider
-      value={{
-        isLoggedIn,
-        token,
-        userId,
-        userInfo,
-        isLoading,
-        isSplashLoading,
-        login,
-        register,
-        logout,
-        loginWithGoogle,
-      }}
-    >
+    <AuthContext.Provider value={value}>
       {children}
     </AuthContext.Provider>
   );

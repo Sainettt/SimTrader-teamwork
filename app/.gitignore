@@ -66,6 +66,9 @@ yarn-error.log
 # testing
 /coverage
 
+# dev.sh logs
+.dev-logs/
+
 # Yarn
 .yarn/*
 !.yarn/patches

@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   Modal,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useFocusEffect } from '@react-navigation/native';
 import { appStyles } from '../../styles/appStyles';
 import BottomBar from '../../components/BottomBar';
@@ -146,7 +147,7 @@ const BalanceTopUpScreen: React.FC<BalanceTopUpScreenProps> = ({
   };
 
   return (
-    <View style={appStyles.flexContainer}>
+    <SafeAreaView style={appStyles.flexContainer} edges={['top', 'left', 'right']}>
       <View style={appStyles.container}>
         <UpperText title="Top Up Balance" onPress={() => navigation.goBack()} />
 
@@ -196,7 +197,7 @@ const BalanceTopUpScreen: React.FC<BalanceTopUpScreenProps> = ({
 
 
           <TouchableOpacity
-            style={appStyles.topUpContinueButton}
+            style={[appStyles.topUpContinueButton, localStyles.continueButtonSpacing]}
             onPress={handleContinue}
           >
             <Text style={localStyles.continueButtonText}>Continue</Text>
@@ -256,19 +257,19 @@ const BalanceTopUpScreen: React.FC<BalanceTopUpScreenProps> = ({
           </View>
         </View>
       </Modal>
-      <CustomAlert 
+      <CustomAlert
         visible={alertVisible}
         title={alertConfig.title}
         message={alertConfig.message}
         type={alertConfig.type}
         onClose={() => {
-          setAlertVisible(false)
+          setAlertVisible(false);
           if (alertConfig.type === 'success') {
             navigation.navigate('Main');
           }
         }}
      />
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -280,7 +281,8 @@ const localStyles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  inputsContainer: { marginTop: verticalScale(100) },
+  inputsContainer: { width: '100%', alignItems: 'center' },
+  continueButtonSpacing: { marginTop: verticalScale(40) },
   inputTextMain: {
     fontSize: moderateScale(64),
     fontFamily: 'Poppins-Bold',

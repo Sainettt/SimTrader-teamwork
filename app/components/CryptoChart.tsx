@@ -1,6 +1,9 @@
 import React from 'react';
 import { View, ActivityIndicator, StyleSheet } from 'react-native';
 import { LineChart } from 'react-native-chart-kit';
+import { moderateScale, verticalScale } from '../utils/responsive';
+
+const CHART_HEIGHT = verticalScale(200);
 
 type Props = {
     data: any[];  
@@ -25,7 +28,7 @@ export const CryptoChart: React.FC<Props> = ({ data, loading, isPositive, width 
                             datasets: [{ data: data.map((d: any) => d.value) }]
                         }}
                         width={width}
-                        height={220}
+                        height={CHART_HEIGHT}
                         withDots={false}
                         withInnerLines={false}
                         withOuterLines={false}
@@ -60,18 +63,18 @@ export const CryptoChart: React.FC<Props> = ({ data, loading, isPositive, width 
 
 const styles = StyleSheet.create({
     chartContainer: {
-        height: 220,
+        height: CHART_HEIGHT,
         justifyContent: 'center',
         alignItems: 'center',
     },
     positionChart: {
-        marginTop: 20,
-        borderRadius: 16,
-        paddingRight: 0, 
-        paddingLeft: 0, 
-        marginLeft: 10 
+        marginTop: verticalScale(15),
+        borderRadius: moderateScale(16),
+        paddingRight: 0,
+        paddingLeft: 0,
+        marginLeft: moderateScale(10),
     },
     indicator: {
-        marginTop: 50,
+        marginTop: verticalScale(40),
     },
 });

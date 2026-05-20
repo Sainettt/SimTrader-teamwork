@@ -1,7 +1,12 @@
 import axios, { AxiosError, InternalAxiosRequestConfig } from 'axios';
-import * as Keychain from 'react-native-keychain';
 
-const API_URL = 'http://57.128.194.112:4000/api'; 
+const API_URL = 'http://10.0.2.2:3000/api';
+
+let authToken: string | null = null;
+
+export const setAuthToken = (token: string | null) => {
+  authToken = token;
+};
 
 interface CustomAxiosRequestConfig extends InternalAxiosRequestConfig {
   _retryCount?: number;
@@ -31,14 +36,12 @@ $api.interceptors.response.use(
       
       originalRequest._retryCount = originalRequest._retryCount || 0;
 
-      if (originalRequest._retryCount < 3) {
+      if (originalRequest._retryCount < 1) {
         originalRequest._retryCount += 1;
 
-        const delay = 1000 * (2 ** (originalRequest._retryCount - 1));
-        
-        console.log(`[Mobile] Server not responding. Try #${originalRequest._retryCount} again in ${delay}ms`);
-        
-        await new Promise<void>(resolve => setTimeout(() => resolve(), delay));
+        console.log(`[Mobile] Server not responding. Retrying once in 2000ms`);
+
+        await new Promise<void>(resolve => setTimeout(() => resolve(), 2000));
         return $api(originalRequest);
       }
     }
@@ -47,15 +50,9 @@ $api.interceptors.response.use(
   }
 );
 
-$api.interceptors.request.use(async (config) => {
-  try {
-    const credentials = await Keychain.getGenericPassword();
-    
-    if (credentials) {
-      config.headers.Authorization = `Bearer ${credentials.password}`;
-    }
-  } catch (error) {
-    console.log('Error loading token', error);
+$api.interceptors.request.use((config) => {
+  if (authToken) {
+    config.headers.Authorization = `Bearer ${authToken}`;
   }
   return config;
 });
@@ -90,11 +87,10 @@ export const authAPI = {
     return response.data;
   },
   async googleLogin(idToken: string, email: string, name: string) {
-        // Send the ID token to the backend for verification and login/registration
-        const response = await $api.post('auth/google', { 
-            token: idToken, 
-            email, 
-            userName: name 
+        const response = await $api.post('auth/google', {
+            idToken,
+            email,
+            userName: name,
         });
         return response.data;
     },

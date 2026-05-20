@@ -9,7 +9,8 @@
     "start": "react-native start",
     "test": "jest",
     "type-check": "tsc --noEmit",
-    "davaisuda": "react-native run-android"
+    "davaisuda": "react-native run-android",
+    "dev": "./dev.sh"
   },
   "dependencies": {
     "@react-native-google-signin/google-signin": "^16.1.1",

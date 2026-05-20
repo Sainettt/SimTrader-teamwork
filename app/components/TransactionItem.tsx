@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import { moderateScale, scale, verticalScale } from '../utils/responsive';
 
 type Transaction = {
   id: number;
@@ -15,7 +16,7 @@ type Props = {
   item: Transaction;
 };
 
-const TransactionItem: React.FC<Props> = ({ item }) => {
+const TransactionItem: React.FC<Props> = React.memo(({ item }) => {
   const date = new Date(item.createdAt).toLocaleDateString('en-GB', {
     day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit'
   });
@@ -75,15 +76,15 @@ const TransactionItem: React.FC<Props> = ({ item }) => {
       </View>
     </View>
   );
-};
+});
 
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingVertical: 15,
-    paddingHorizontal: 10,
+    paddingVertical: verticalScale(12),
+    paddingHorizontal: scale(10),
     borderBottomWidth: 1,
     borderBottomColor: '#4A4A4A',
   },
@@ -96,24 +97,24 @@ const styles = StyleSheet.create({
     gap: 4,
   },
   typeText: {
-    fontSize: 16,
+    fontSize: moderateScale(15),
     fontFamily: 'Poppins-Bold',
     color: '#FFFFFF',
   },
   dateText: {
-    fontSize: 12,
+    fontSize: moderateScale(11),
     fontFamily: 'Poppins-Regular',
     color: '#AAAAAA',
   },
   amountText: {
-    fontSize: 16,
+    fontSize: moderateScale(15),
     fontFamily: 'Poppins-Bold',
   },
   subText: {
-    fontSize: 12,
+    fontSize: moderateScale(11),
     fontFamily: 'Poppins-Regular',
     color: '#777',
-  }
+  },
 });
 
 export default TransactionItem;

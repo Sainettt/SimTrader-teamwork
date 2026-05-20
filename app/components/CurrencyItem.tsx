@@ -2,17 +2,21 @@ import React from 'react';
 import { Text, View, TouchableOpacity, StyleSheet } from 'react-native';
 import { appStyles } from '../styles/appStyles';
 import { Currency } from '../src/types/types';
+import { moderateScale, scale, verticalScale } from '../utils/responsive';
 
 type Props = {
   item: Currency;
   onPressItem?: (item: Currency) => void;
 }
 
-const CurrencyItem: React.FC<Props> = ({ item, onPressItem }) => {
+const CurrencyItem: React.FC<Props> = React.memo(({ item, onPressItem }) => {
   const isPositive = parseFloat(item.change) >= 0;
+  const handlePress = React.useCallback(() => {
+    onPressItem?.(item);
+  }, [onPressItem, item]);
 
   return (
-    <TouchableOpacity style={localStyles.itemRow} onPress={() => onPressItem && onPressItem(item)}>
+    <TouchableOpacity style={localStyles.itemRow} onPress={handlePress}>
       <View>
         <Text style={appStyles.currencyNameAndPriceText}>{item.name}</Text>
       </View>
@@ -35,18 +39,18 @@ const CurrencyItem: React.FC<Props> = ({ item, onPressItem }) => {
       </View>
     </TouchableOpacity>
   );
-};
+});
 
 const localStyles = StyleSheet.create({
   itemRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingVertical: 12,
-    paddingHorizontal: 25,
+    paddingVertical: verticalScale(10),
+    paddingHorizontal: scale(20),
   },
   marginPriceVariable: {
-    marginLeft: 50,
+    marginLeft: scale(40),
   },
 });
 export default CurrencyItem;

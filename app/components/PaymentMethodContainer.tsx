@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, TouchableOpacity, Image, ImageSourcePropType, StyleProp, ImageStyle } from 'react-native';
+import { moderateScale, scale } from '../utils/responsive';
 
 interface PaymentMethodContainerProps {
   logo: ImageSourcePropType;
@@ -21,45 +22,26 @@ const PaymentMethodContainer: React.FC<PaymentMethodContainerProps> = ({ logo, s
 
 const styles = StyleSheet.create({
   container: {
-    width: 290,
-    height: 80,
+    width: '100%',
+    maxWidth: scale(310),
+    alignSelf: 'center',
+    height: moderateScale(80),
     backgroundColor: '#3C3C3C',
-    borderRadius: 10,
+    borderRadius: moderateScale(10),
     borderWidth: 1,
     borderColor: '#636363',
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingHorizontal: 20,
+    paddingHorizontal: scale(20),
   },
   leftContent: {
     flexDirection: 'row',
     alignItems: 'center',
   },
-  logoApplePayContainer: {
-    width: 50,
-    height: 50,
-    marginRight: 15,
-  },
-  logoBlikContainer: {
-    width: 50,
-    height: 50,
-    marginRight: 15,
-  },
-  methodName: {
-    fontSize: 18,
-    fontFamily: 'Poppins-Bold', 
-    color: '#FFFFFF',
-    fontWeight: '700',
-  },
-  arrowIcon: {
-    fontSize: 20,
-    color: '#FFFFFF',
-    fontWeight: '300',
-  },
   imageContainer: {
-    width: 15, height: 15
-  }
+    width: moderateScale(15), height: moderateScale(15),
+  },
 });
 
 export default PaymentMethodContainer;

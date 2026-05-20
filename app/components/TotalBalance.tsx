@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, ActivityIndicator, TouchableOpacity, StyleSheet } from 'react-native';
 import { appStyles } from '../styles/appStyles';
+import { moderateScale, scale } from '../utils/responsive';
 
 type TotalBalanceProps = {
     balance: string;
@@ -68,15 +69,15 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        marginBottom: 10,
+        marginBottom: moderateScale(8),
     },
     textBlock: {
         flexDirection: 'column',
         justifyContent: 'center',
-        flex: 1, 
+        flex: 1,
     },
     balanceText: {
-        fontSize: 32,
+        fontSize: moderateScale(30),
         fontFamily: 'Poppins-Bold',
         color: '#FFFFFF',
         includeFontPadding: false,
@@ -84,38 +85,38 @@ const styles = StyleSheet.create({
     pnlContainer: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginTop: -5,
+        marginTop: -4,
     },
     pnlLabel: {
-        fontSize: 12,
+        fontSize: moderateScale(11),
         fontFamily: 'Poppins-Medium',
         color: '#AAAAAA',
     },
     pnlValue: {
-        fontSize: 12,
+        fontSize: moderateScale(11),
         fontFamily: 'Poppins-Medium',
     },
     buttonsContainer: {
         flexDirection: 'row',
         alignItems: 'center',
-        gap: 10,
+        gap: moderateScale(8),
     },
     actionButton: {
         backgroundColor: '#83EDA6',
-        borderRadius: 8,
-        paddingVertical: 10,
-        paddingHorizontal: 12,
+        borderRadius: moderateScale(8),
+        paddingVertical: moderateScale(9),
+        paddingHorizontal: moderateScale(12),
         alignItems: 'center',
     },
     withdrawButton: {
-        backgroundColor: '#4A4A4A', 
+        backgroundColor: '#4A4A4A',
     },
     buttonText: {
-        fontSize: 14,
+        fontSize: moderateScale(13),
         fontFamily: 'Poppins-Bold',
-        color: '#FFFFFF', 
+        color: '#FFFFFF',
     },
-    marginBalance: {marginLeft: 10}
+    marginBalance: { marginLeft: scale(10) },
 });
 
 export default TotalBalance;

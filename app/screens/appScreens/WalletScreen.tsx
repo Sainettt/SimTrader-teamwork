@@ -1,6 +1,6 @@
-import React, { useState, useRef, useContext, useCallback } from 'react';
+import React, { useState, useRef, useContext, useCallback, useMemo } from 'react';
 import { useFocusEffect } from '@react-navigation/native';
-import { View, FlatList, Text, StyleSheet } from 'react-native';
+import { View, FlatList, ListRenderItem, Text, StyleSheet } from 'react-native';
 
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { appStyles } from '../../styles/appStyles';
@@ -64,7 +64,7 @@ const WalletScreen = ({ navigation }: any) => {
       };
 
       fetchWalletData();
-      const intervalId = setInterval(fetchWalletData, 5000);
+      const intervalId = setInterval(fetchWalletData, 15000);
 
       return () => {
         isActive = false;
@@ -73,67 +73,81 @@ const WalletScreen = ({ navigation }: any) => {
     }, [userId]),
   );
 
-  const handleAssetPress = (item: Asset) => {
+  const handleAssetPress = useCallback((item: Asset) => {
     if (item.symbol === 'USD') return;
-    const tradingPairId = `${item.symbol}USDT`;
-
     navigation.navigate('Exchange', {
-      coinId: tradingPairId,
+      coinId: `${item.symbol}USDT`,
       symbol: item.symbol,
       name: item.name,
       currentPrice: item.price,
       priceChange: item.change,
       ownedAmount: item.amount,
     });
-  };
+  }, [navigation]);
+
+  const renderItem = useCallback<ListRenderItem<Asset>>(
+    ({ item }) => <WalletAssetItem item={item} onPress={handleAssetPress} />,
+    [handleAssetPress],
+  );
+
+  const goBack = useCallback(() => navigation.goBack(), [navigation]);
+  const goToMain = useCallback(() => navigation.navigate('Main'), [navigation]);
+  const goToHistory = useCallback(() => navigation.navigate('TransactionHistory'), [navigation]);
+  const goToSettings = useCallback(() => navigation.navigate('Settings'), [navigation]);
+  const goToTopUp = useCallback(() => navigation.navigate('BalanceTopUp'), [navigation]);
+  const goToWithdraw = useCallback(() => navigation.navigate('Withdraw'), [navigation]);
+  const noop = useCallback(() => {}, []);
+
+  const listHeader = useMemo(
+    () => (
+      <WalletHeader
+        balance={`${totalBalance}`}
+        changeValue={portfolioStats.val}
+        changePercent={portfolioStats.pct}
+        loading={loading && !isLoaded.current}
+        onTopUpPress={goToTopUp}
+        onWithdrawPress={goToWithdraw}
+      />
+    ),
+    [totalBalance, portfolioStats.val, portfolioStats.pct, loading, goToTopUp, goToWithdraw],
+  );
+
+  const listEmpty = useMemo(
+    () =>
+      !loading ? (
+        <View style={styles.listEmptyContainer}>
+          <Text style={styles.noAssetsFoundText}>No assets found</Text>
+        </View>
+      ) : null,
+    [loading],
+  );
 
   return (
     <SafeAreaView
       style={appStyles.containerWithoutPadding}
       edges={['top', 'left', 'right']}
     >
-      <UpperText title="Wallet" onPress={() => navigation.goBack()} />
+      <UpperText title="Wallet" onPress={goBack} />
 
       <View style={appStyles.flexContainer}>
         <FlatList
           data={portfolioAssets}
           keyExtractor={item => item.id}
-          renderItem={({ item }) => (
-            <WalletAssetItem
-              item={item}
-              onPress={() => handleAssetPress(item)}
-            />
-          )}
-          ListHeaderComponent={
-            <WalletHeader
-              balance={`${totalBalance}`}
-              changeValue={portfolioStats.val}
-              changePercent={portfolioStats.pct}
-              loading={loading && !isLoaded.current}
-              onTopUpPress={() => navigation.navigate('BalanceTopUp')}
-              onWithdrawPress={() => navigation.navigate('Withdraw')}
-            />
-          }
-          ListEmptyComponent={
-            !loading ? (
-              <View style={styles.listEmptyContainer}>
-                <Text style={styles.noAssetsFoundText}>No assets found</Text>
-              </View>
-            ) : null
-          }
+          renderItem={renderItem}
+          ListHeaderComponent={listHeader}
+          ListEmptyComponent={listEmpty}
           contentContainerStyle={styles.contentContainerStyle}
           showsVerticalScrollIndicator={false}
+          removeClippedSubviews
         />
       </View>
 
       <View>
         <BottomBar
-          homePress={() => navigation.navigate('Main')}
-          walletPress={() => {}}
-          transactionPress={() => navigation.navigate('TransactionHistory')}
-          settingsPress={() => {
-          navigation.navigate('Settings');
-        }}
+          homePress={goToMain}
+          walletPress={noop}
+          transactionPress={goToHistory}
+          settingsPress={goToSettings}
         />
       </View>
     </SafeAreaView>

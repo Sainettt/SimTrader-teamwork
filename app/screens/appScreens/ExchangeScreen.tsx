@@ -4,8 +4,10 @@ import React, {
   useRef,
   useCallback,
   useContext,
+  useMemo,
 } from 'react';
 import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useFocusEffect } from '@react-navigation/native';
 import { AppStackParamList } from '../../src/navigation/appTypes';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
@@ -26,6 +28,7 @@ type ExchangeScreenProps = NativeStackScreenProps<
 >;
 
 const screenWidth = Dimensions.get('window').width;
+const INTERVALS = ['1H', '1D', '1W', '1M', '1Y'];
 
 const ExchangeScreen: React.FC<ExchangeScreenProps> = ({
   navigation,
@@ -41,7 +44,6 @@ const ExchangeScreen: React.FC<ExchangeScreenProps> = ({
   } = route.params;
 
   const [selectedInterval, setSelectedInterval] = useState('1D');
-  const intervals = ['1H', '1D', '1W', '1M', '1Y'];
 
   const [chartData, setChartData] = useState<any[]>([]);
   const [currentPrice, setCurrentPrice] = useState(initialPrice);
@@ -130,7 +132,7 @@ const ExchangeScreen: React.FC<ExchangeScreenProps> = ({
     }, [selectedInterval, coinId, fetchBalances]),
   );
 
-  const handleTrade = async (type: 'buy' | 'sell', amount: number) => {
+  const handleTrade = useCallback(async (type: 'buy' | 'sell', amount: number) => {
     if (!userId) return;
     setIsTrading(true);
     try {
@@ -164,16 +166,26 @@ const ExchangeScreen: React.FC<ExchangeScreenProps> = ({
     } finally {
       setIsTrading(false);
     }
-  };
+  }, [userId, symbol, currentPrice, fetchBalances]);
 
   const isPositive = parseFloat(priceChangePercent) >= 0;
-  const balanceInUsd = (Number(ownedAmount) * Number(currentPrice)).toFixed(2);
+  const balanceInUsd = useMemo(
+    () => (Number(ownedAmount) * Number(currentPrice)).toFixed(2),
+    [ownedAmount, currentPrice],
+  );
+
+  const goBack = useCallback(() => navigation.goBack(), [navigation]);
+  const goToMain = useCallback(() => navigation.navigate('Main'), [navigation]);
+  const goToWallet = useCallback(() => navigation.navigate('Wallet'), [navigation]);
+  const goToHistory = useCallback(() => navigation.navigate('TransactionHistory'), [navigation]);
+  const goToSettings = useCallback(() => navigation.navigate('Settings'), [navigation]);
+  const closeAlert = useCallback(() => setAlertVisible(false), []);
 
   return (
-    <View style={appStyles.flexContainer}>
-      
+    <SafeAreaView style={appStyles.flexContainer} edges={['top', 'left', 'right']}>
+
       <View style={appStyles.containerWithoutPadding}>
-        <UpperText title={`${symbol}`} onPress={() => navigation.goBack()} />
+        <UpperText title={`${symbol}`} onPress={goBack} />
 
         <View style={styles.mainCintentContainer}>
           <View>
@@ -220,7 +232,7 @@ const ExchangeScreen: React.FC<ExchangeScreenProps> = ({
             />
 
             <IntervalSelector
-              intervals={intervals}
+              intervals={INTERVALS}
               selectedInterval={selectedInterval}
               onSelect={setSelectedInterval}
             />
@@ -236,23 +248,19 @@ const ExchangeScreen: React.FC<ExchangeScreenProps> = ({
       </View>
 
       <BottomBar
-        homePress={() => navigation.navigate('Main')}
-        walletPress={() => navigation.navigate('Wallet')}
-        transactionPress={() => {
-          navigation.navigate('TransactionHistory');
-        }}
-        settingsPress={() => {
-          navigation.navigate('Settings');
-        }}
+        homePress={goToMain}
+        walletPress={goToWallet}
+        transactionPress={goToHistory}
+        settingsPress={goToSettings}
       />
-      <CustomAlert 
+      <CustomAlert
         visible={alertVisible}
         title={alertConfig.title}
         message={alertConfig.message}
         type={alertConfig.type}
-        onClose={() => setAlertVisible(false)}
+        onClose={closeAlert}
      />
-    </View>
+    </SafeAreaView>
   );
 };
 

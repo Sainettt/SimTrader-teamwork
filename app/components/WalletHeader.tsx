@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import TotalBalance from './TotalBalance';
+import { moderateScale, scale, verticalScale } from '../utils/responsive';
 
 type Props = {
   balance: string;
@@ -44,31 +45,21 @@ const WalletHeader: React.FC<Props> = ({ balance, changeValue, changePercent,loa
 
 const styles = StyleSheet.create({
   headerWrapper: {
-    marginBottom: 5,
+    marginBottom: verticalScale(5),
   },
-  sectionTitle: {
-    marginTop: 25,
-    marginBottom: 15,
-    fontSize: 16,            
-    fontFamily: 'Poppins-Bold', 
-    color: '#FFFFFF',  
-    paddingHorizontal: 10,      
-  },
-  
   tableHeaderRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingHorizontal: 10, 
-    marginBottom: 5,
-    marginTop: 30,
+    paddingHorizontal: scale(10),
+    marginBottom: verticalScale(5),
+    marginTop: verticalScale(20),
     borderBottomWidth: 1,
     borderBottomColor: '#4A4A4A',
   },
-
   leftSide: {
     flex: 1,
-    alignItems: 'flex-start', 
+    alignItems: 'flex-start',
   },
   centerSide: {
     flex: 1,
@@ -78,11 +69,10 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'flex-end',
   },
-
   columnHeaderText: {
     color: '#FFFFFF',
     fontFamily: 'Poppins-Bold',
-    fontSize: 14,
+    fontSize: moderateScale(13),
   },
 });
 

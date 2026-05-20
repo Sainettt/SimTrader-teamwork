@@ -1,30 +1,33 @@
 import React, { useContext } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView, ScrollView } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { useNavigation } from '@react-navigation/native'; // 1. Импорт навигации
+import { useNavigation } from '@react-navigation/native';
 import { AuthContext } from '../../context/AuthContext';
+import { moderateScale, scale, verticalScale } from '../../utils/responsive';
 
 const SettingsScreen = () => {
-    const navigation = useNavigation(); // 2. Хук для навигации
+    const navigation = useNavigation();
     const { logout, userInfo } = useContext(AuthContext);
 
     return (
-        <SafeAreaView style={styles.container}>
-            {/* Заголовок с кнопкой назад */}
+        <SafeAreaView style={styles.container} edges={['top', 'left', 'right', 'bottom']}>
             <View style={styles.header}>
-                <TouchableOpacity 
-                    onPress={() => navigation.goBack()} 
+                <TouchableOpacity
+                    onPress={() => navigation.goBack()}
                     style={styles.backButton}
-                    hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }} // Увеличиваем область нажатия
+                    hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
                 >
-                    <Icon name="arrow-back" size={28} color="#FFFFFF" />
+                    <Icon name="arrow-back" size={moderateScale(26)} color="#FFFFFF" />
                 </TouchableOpacity>
                 <Text style={styles.headerText}>Settings</Text>
             </View>
 
-            <ScrollView style={styles.content}>
-                
-                {/* Секция Профиля */}
+            <ScrollView
+                style={styles.content}
+                contentContainerStyle={styles.contentContainer}
+                showsVerticalScrollIndicator={false}
+            >
                 <View style={styles.section}>
                     <Text style={styles.sectionTitle}>Profile</Text>
                     <View style={styles.card}>
@@ -34,21 +37,20 @@ const SettingsScreen = () => {
                                     {userInfo?.username?.charAt(0).toUpperCase() || 'U'}
                                 </Text>
                             </View>
-                            <View>
-                                <Text style={styles.username}>{userInfo?.username || 'User'}</Text>
-                                <Text style={styles.email}>{userInfo?.email || 'email@example.com'}</Text>
+                            <View style={styles.userTextWrap}>
+                                <Text style={styles.username} numberOfLines={1}>{userInfo?.username || 'User'}</Text>
+                                <Text style={styles.email} numberOfLines={1}>{userInfo?.email || 'email@example.com'}</Text>
                             </View>
                         </View>
                     </View>
                 </View>
 
-                {/* Секция Настроек */}
                 <View style={styles.section}>
                     <Text style={styles.sectionTitle}>General</Text>
-                    
+
                     <TouchableOpacity style={styles.settingItem}>
                         <View style={styles.settingItemLeft}>
-                            <Icon name="language-outline" size={22} color="#D9D9D9" />
+                            <Icon name="language-outline" size={moderateScale(20)} color="#D9D9D9" />
                             <Text style={styles.settingText}>Language</Text>
                         </View>
                         <Text style={styles.settingValue}>English</Text>
@@ -56,26 +58,25 @@ const SettingsScreen = () => {
 
                     <TouchableOpacity style={styles.settingItem}>
                         <View style={styles.settingItemLeft}>
-                            <Icon name="notifications-outline" size={22} color="#D9D9D9" />
+                            <Icon name="notifications-outline" size={moderateScale(20)} color="#D9D9D9" />
                             <Text style={styles.settingText}>Notifications</Text>
                         </View>
-                        <Icon name="chevron-forward" size={20} color="#9D9C9C" />
+                        <Icon name="chevron-forward" size={moderateScale(18)} color="#9D9C9C" />
                     </TouchableOpacity>
 
                     <TouchableOpacity style={styles.settingItem}>
                         <View style={styles.settingItemLeft}>
-                            <Icon name="shield-checkmark-outline" size={22} color="#D9D9D9" />
+                            <Icon name="shield-checkmark-outline" size={moderateScale(20)} color="#D9D9D9" />
                             <Text style={styles.settingText}>Security</Text>
                         </View>
-                        <Icon name="chevron-forward" size={20} color="#9D9C9C" />
+                        <Icon name="chevron-forward" size={moderateScale(18)} color="#9D9C9C" />
                     </TouchableOpacity>
                 </View>
 
-                {/* Кнопка выхода */}
                 <View style={styles.logoutContainer}>
                     <TouchableOpacity style={styles.logoutButton} onPress={logout}>
                         <Text style={styles.logoutText}>Log Out</Text>
-                        <Icon name="log-out-outline" size={20} color="#EB5B5B" />
+                        <Icon name="log-out-outline" size={moderateScale(18)} color="#EB5B5B" />
                     </TouchableOpacity>
                 </View>
 
@@ -90,43 +91,40 @@ const styles = StyleSheet.create({
         backgroundColor: '#3C3C3C',
     },
     header: {
-        flexDirection: 'row', // Выстраиваем кнопку и текст в ряд
-        alignItems: 'center', // Центрируем по вертикали
-        paddingHorizontal: 20,
-        paddingVertical: 30,
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingHorizontal: scale(20),
+        paddingVertical: verticalScale(15),
     },
     backButton: {
-        marginRight: 15, // Отступ между стрелкой и заголовком
+        marginRight: scale(15),
     },
     headerText: {
-        fontSize: 20,
+        fontSize: moderateScale(20),
         fontFamily: 'Poppins-Bold',
-        fontWeight: 'bold',
         color: '#FFFFFF',
-        // Убираем lineHeight, если он мешает выравниванию, или подстраиваем его
     },
     content: {
-        padding: 20,
+        flex: 1,
+    },
+    contentContainer: {
+        paddingHorizontal: scale(20),
+        paddingBottom: verticalScale(20),
     },
     section: {
-        marginBottom: 30,
+        marginBottom: verticalScale(20),
     },
     sectionTitle: {
         color: '#D9D9D9',
-        fontSize: 14,
-        fontWeight: '600',
-        marginBottom: 10,
+        fontSize: moderateScale(13),
+        marginBottom: verticalScale(8),
         textTransform: 'uppercase',
         fontFamily: 'Poppins-SemiBold',
     },
     card: {
         backgroundColor: '#636363',
-        borderRadius: 12,
-        padding: 15,
-        shadowColor: "#000",
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 3.84,
+        borderRadius: moderateScale(12),
+        padding: moderateScale(15),
         elevation: 5,
     },
     userInfoRow: {
@@ -134,29 +132,30 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     avatarPlaceholder: {
-        width: 50,
-        height: 50,
-        borderRadius: 25,
+        width: moderateScale(50),
+        height: moderateScale(50),
+        borderRadius: moderateScale(25),
         backgroundColor: '#83EDA6',
         justifyContent: 'center',
         alignItems: 'center',
-        marginRight: 15,
+        marginRight: scale(15),
     },
     avatarText: {
         color: '#3C3C3C',
-        fontSize: 22,
-        fontWeight: 'bold',
+        fontSize: moderateScale(22),
         fontFamily: 'Poppins-Bold',
+    },
+    userTextWrap: {
+        flex: 1,
     },
     username: {
         color: '#FFFFFF',
-        fontSize: 18,
-        fontWeight: 'bold',
+        fontSize: moderateScale(17),
         fontFamily: 'Poppins-Bold',
     },
     email: {
         color: '#D9D9D9',
-        fontSize: 14,
+        fontSize: moderateScale(13),
         marginTop: 2,
         fontFamily: 'Poppins-Regular',
     },
@@ -165,44 +164,43 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         backgroundColor: '#636363',
-        padding: 16,
-        marginBottom: 8,
-        borderRadius: 12,
+        padding: moderateScale(14),
+        marginBottom: verticalScale(8),
+        borderRadius: moderateScale(12),
     },
     settingItemLeft: {
         flexDirection: 'row',
         alignItems: 'center',
-        gap: 12,
+        gap: moderateScale(12),
     },
     settingText: {
         color: '#FFFFFF',
-        fontSize: 16,
+        fontSize: moderateScale(15),
         fontFamily: 'Poppins-Medium',
     },
     settingValue: {
         color: '#D9D9D9',
-        fontSize: 14,
+        fontSize: moderateScale(13),
         fontFamily: 'Poppins-Regular',
     },
     logoutContainer: {
-        marginTop: 10,
-        marginBottom: 50,
+        marginTop: verticalScale(10),
+        marginBottom: verticalScale(20),
     },
     logoutButton: {
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: 'rgba(235, 91, 91, 0.15)',
-        padding: 15,
-        borderRadius: 12,
+        padding: moderateScale(14),
+        borderRadius: moderateScale(12),
         borderWidth: 1,
         borderColor: 'rgba(235, 91, 91, 0.5)',
     },
     logoutText: {
         color: '#EB5B5B',
-        fontSize: 16,
-        fontWeight: '600',
-        marginRight: 8,
+        fontSize: moderateScale(15),
+        marginRight: scale(8),
         fontFamily: 'Poppins-SemiBold',
     },
 });

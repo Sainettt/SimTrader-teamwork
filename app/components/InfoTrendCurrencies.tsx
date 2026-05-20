@@ -1,5 +1,5 @@
-import React from 'react';
-import { FlatList, Text, View, StyleSheet } from 'react-native';
+import React, { useCallback } from 'react';
+import { FlatList, ListRenderItem, Text, View, StyleSheet } from 'react-native';
 import { appStyles } from '../styles/appStyles';
 import CurrencyItem from '../components/CurrencyItem';
 import { Currency } from '../src/types/types';
@@ -9,10 +9,16 @@ type Props = {
   onPressItem?: (item: Currency) => void;
 };
 
-const InfoTrendCurrencies: React.FC<Props> = ({ data, onPressItem }) => {
-    
+const keyExtractor = (item: Currency) => item.id;
+
+const InfoTrendCurrencies: React.FC<Props> = React.memo(({ data, onPressItem }) => {
+    const renderItem = useCallback<ListRenderItem<Currency>>(
+        ({ item }) => <CurrencyItem item={item} onPressItem={onPressItem} />,
+        [onPressItem],
+    );
+
     return (
-        <View> 
+        <View style={localStyles.root}>
             <View style={appStyles.infoTrendHeaderContainer}>
                 <View>
                     <Text style={appStyles.infoTrendHeaderText}>Trending</Text>
@@ -27,11 +33,12 @@ const InfoTrendCurrencies: React.FC<Props> = ({ data, onPressItem }) => {
             <View style={appStyles.trendHeaderContainer}>
                 <FlatList
                     data={data}
-                    renderItem={({ item }) => <CurrencyItem item={item} onPressItem={onPressItem} />}
-                    keyExtractor={(item) => item.id}
-                    showsVerticalScrollIndicator={false} 
+                    renderItem={renderItem}
+                    keyExtractor={keyExtractor}
+                    showsVerticalScrollIndicator={false}
                     initialNumToRender={10}
                     windowSize={5}
+                    removeClippedSubviews
                     ListEmptyComponent={
                         <Text style={appStyles.emptyListText}>
                             Loading data...
@@ -41,9 +48,12 @@ const InfoTrendCurrencies: React.FC<Props> = ({ data, onPressItem }) => {
             </View>
         </View>
     );
-};
+});
 
 const localStyles = StyleSheet.create({
+  root: {
+    flex: 1,
+  },
   marginPriceTextContainer:{
     marginLeft: 20,
   },

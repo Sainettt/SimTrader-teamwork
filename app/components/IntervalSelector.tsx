@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { moderateScale, scale, verticalScale } from '../utils/responsive';
 
 type Props = {
     intervals: string[];                
@@ -35,16 +36,15 @@ const styles = StyleSheet.create({
     intervalsContainer: {
         flexDirection: 'row',
         justifyContent: 'space-around',
-        paddingHorizontal: 20,
-        marginBottom: 10,
-        marginTop: 10
+        paddingHorizontal: scale(20),
+        marginVertical: verticalScale(8),
     },
     intervalButton: {
-        width: 40,
-        height: 40,
+        width: moderateScale(40),
+        height: moderateScale(40),
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius: 10,
+        borderRadius: moderateScale(10),
         backgroundColor: 'transparent',
     },
     activeIntervalButton: {
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     intervalText: {
         color: '#777',
         fontFamily: 'Poppins-Bold',
-        fontSize: 14,
+        fontSize: moderateScale(13),
     },
     activeIntervalText: {
         color: '#FFFFFF',

@@ -3,6 +3,7 @@ import { View, Text, TextInput, TouchableOpacity, StyleSheet, ActivityIndicator 
 import { useFocusEffect } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { appStyles } from '../../styles/appStyles';
+import { moderateScale, scale, verticalScale } from '../../utils/responsive';
 import UpperText from '../../components/UpperText';
 import BottomBar from '../../components/BottomBar';
 import { AuthContext } from '../../context/AuthContext';
@@ -164,23 +165,23 @@ const WithdrawScreen = ({ navigation }: any) => {
 const styles = StyleSheet.create({
     content: {
         flex: 1,
-        paddingHorizontal: 20,
-        paddingTop: 30,
+        paddingHorizontal: scale(20),
+        paddingTop: verticalScale(20),
     },
     balanceHeader: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        marginBottom: 10,
+        marginBottom: verticalScale(10),
     },
     label: {
         color: '#FFFFFF',
-        fontSize: 16,
+        fontSize: moderateScale(16),
         fontFamily: 'Poppins-Medium',
     },
     availableText: {
         color: '#AAAAAA',
-        fontSize: 12,
+        fontSize: moderateScale(12),
         fontFamily: 'Poppins-Regular',
     },
     availableValue: {
@@ -189,32 +190,32 @@ const styles = StyleSheet.create({
     },
     input: {
         backgroundColor: '#4A4A4A',
-        borderRadius: 10,
+        borderRadius: moderateScale(10),
         color: '#FFFFFF',
-        fontSize: 18,
+        fontSize: moderateScale(18),
         fontFamily: 'Poppins-Regular',
-        paddingHorizontal: 15,
-        paddingVertical: 12,
-        marginBottom: 20,
+        paddingHorizontal: scale(15),
+        paddingVertical: moderateScale(12),
+        marginBottom: verticalScale(15),
     },
     infoText: {
         color: '#AAAAAA',
-        fontSize: 12,
+        fontSize: moderateScale(12),
         fontFamily: 'Poppins-Regular',
-        marginBottom: 30,
+        marginBottom: verticalScale(20),
     },
     withdrawButton: {
         backgroundColor: '#83EDA6',
-        borderRadius: 10,
-        height: 50,
+        borderRadius: moderateScale(10),
+        height: moderateScale(50),
         justifyContent: 'center',
         alignItems: 'center',
     },
     buttonText: {
         color: '#FFFFFF',
-        fontSize: 18,
+        fontSize: moderateScale(18),
         fontFamily: 'Poppins-Bold',
-    }
+    },
 });
 
 export default WithdrawScreen;
