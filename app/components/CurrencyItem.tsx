@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, View, TouchableOpacity, StyleSheet } from 'react-native';
 import { appStyles } from '../styles/appStyles';
 import { Currency } from '../src/types/types';
-import { moderateScale, scale, verticalScale } from '../utils/responsive';
+import { scale, verticalScale } from '../utils/responsive';
 
 type Props = {
   item: Currency;
