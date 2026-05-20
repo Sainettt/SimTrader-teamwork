@@ -36,7 +36,6 @@ export const startPriceUpdater = () => {
     cron.schedule('*/5 * * * * *', async () => {
         try {
             const { data } = await binanceApi.get('/ticker/24hr');
-            
             // 1. Here we are dont use filter. For all data to wallet (with USDC for exmpl)
             data.forEach((ticker: BinanceTicker) => {
                 priceCache[ticker.symbol] = {
