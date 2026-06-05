@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { moderateScale, scale, verticalScale } from '../utils/responsive';
 
 type Transaction = {
@@ -17,7 +18,8 @@ type Props = {
 };
 
 const TransactionItem: React.FC<Props> = React.memo(({ item }) => {
-  const date = new Date(item.createdAt).toLocaleDateString('en-GB', {
+  const { t, i18n } = useTranslation();
+  const date = new Date(item.createdAt).toLocaleDateString(i18n.language, {
     day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit'
   });
 
@@ -27,31 +29,31 @@ const TransactionItem: React.FC<Props> = React.memo(({ item }) => {
 
   switch (item.type) {
     case 'DEPOSIT':
-      titleText = 'Top Up';
+      titleText = t('history.topUp');
       valueColor = '#83EDA6';
       amountText = `+${item.amount.toFixed(2)}$`;
       break;
 
     case 'WITHDRAWAL':
-      titleText = 'Withdraw';
+      titleText = t('history.withdraw');
       valueColor = '#83EDA6';
-      amountText = `-${item.amount.toFixed(2)}$`; 
+      amountText = `-${item.amount.toFixed(2)}$`;
       break;
 
     case 'BUY':
-      titleText = `Buy ${item.currency}`;
-      valueColor = '#FFFFFF'; 
+      titleText = t('history.buy', { currency: item.currency });
+      valueColor = '#FFFFFF';
       amountText = `-${item.totalUsd.toFixed(2)}$`;
       break;
 
     case 'SELL':
-      titleText = `Sell ${item.currency}`;
+      titleText = t('history.sell', { currency: item.currency });
       valueColor = '#FFFFFF';
       amountText = `+${item.totalUsd.toFixed(2)}$`;
       break;
 
     default:
-      titleText = 'Transaction';
+      titleText = t('history.transaction');
       amountText = `${item.totalUsd.toFixed(2)}$`;
   }
 

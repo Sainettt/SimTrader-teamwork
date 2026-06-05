@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useTranslation } from 'react-i18next';
 import BottomBar from '../../components/BottomBar';
 import { appStyles } from '../../styles/appStyles';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
@@ -15,18 +16,19 @@ type PaymentMethodProps = NativeStackScreenProps<
 >;
 
 const PaymentMethodScreen: React.FC<PaymentMethodProps> = ({ navigation }) => {
+  const { t } = useTranslation();
   return (
     <SafeAreaView style={appStyles.flexContainer} edges={['top', 'left', 'right']}>
       <View style={appStyles.container}>
         <UpperText
-          title="Fund your wallet"
+          title={t('payment.title')}
           onPress={() => navigation.goBack()}
         />
         <View style={styles.marginTextSelectMethod}>
-          <Text style={styles.textSelectMethod}> Select a payment method </Text>
+          <Text style={styles.textSelectMethod}> {t('payment.selectMethod')} </Text>
         </View>
         <View style={styles.marginTextPaymentMethod}>
-          <Text style={styles.textPaymentMethod}> Recommended </Text>
+          <Text style={styles.textPaymentMethod}> {t('payment.recommended')} </Text>
         </View>
         <PaymentMethodContainer
           logo={require('../../assets/images/applePay.png')}
@@ -37,7 +39,7 @@ const PaymentMethodScreen: React.FC<PaymentMethodProps> = ({ navigation }) => {
         />
 
         <View style={styles.marginTextPaymentMethod}>
-          <Text style={styles.textPaymentMethod}> Other </Text>
+          <Text style={styles.textPaymentMethod}> {t('payment.other')} </Text>
         </View>
         <PaymentMethodContainer
           logo={require('../../assets/images/blik.png')}

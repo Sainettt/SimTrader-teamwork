@@ -1,14 +1,15 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import { 
-    View, 
-    Text, 
-    TouchableOpacity, 
-    TextInput, 
-    StyleSheet, 
-    Modal, 
-    ActivityIndicator 
+import {
+    View,
+    Text,
+    TouchableOpacity,
+    TextInput,
+    StyleSheet,
+    Modal,
+    ActivityIndicator
 } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
+import { useTranslation } from 'react-i18next';
 import { currencyAPI } from '../services/api';
 import { appStyles } from '../styles/appStyles';
 
@@ -21,12 +22,13 @@ interface TradePanelProps {
     isLoading?: boolean;
 }
 
-export const TradePanel: React.FC<TradePanelProps> = ({ 
-    symbol, 
-    currentPrice, 
-    onConfirmTrade, 
-    isLoading = false 
+export const TradePanel: React.FC<TradePanelProps> = ({
+    symbol,
+    currentPrice,
+    onConfirmTrade,
+    isLoading = false
 }) => {
+    const { t } = useTranslation();
     const [type, setType] = useState<TradeType>('buy');
     const [inputValue, setInputValue] = useState(''); 
     const [modalVisible, setModalVisible] = useState(false);
@@ -97,17 +99,17 @@ export const TradePanel: React.FC<TradePanelProps> = ({
     return (
         <View style={styles.container}>
             <View style={styles.switchContainer}>
-                <TouchableOpacity 
-                    style={[styles.switchButton, isBuy && styles.activeBuyButton]} 
+                <TouchableOpacity
+                    style={[styles.switchButton, isBuy && styles.activeBuyButton]}
                     onPress={() => setType('buy')}
                 >
-                    <Text style={[styles.switchText, isBuy && styles.activeText]}>Buy</Text>
+                    <Text style={[styles.switchText, isBuy && styles.activeText]}>{t('trade.buy')}</Text>
                 </TouchableOpacity>
-                <TouchableOpacity 
-                    style={[styles.switchButton, !isBuy && styles.activeSellButton]} 
+                <TouchableOpacity
+                    style={[styles.switchButton, !isBuy && styles.activeSellButton]}
                     onPress={() => setType('sell')}
                 >
-                    <Text style={[styles.switchText, !isBuy && styles.activeText]}>Sell</Text>
+                    <Text style={[styles.switchText, !isBuy && styles.activeText]}>{t('trade.sell')}</Text>
                 </TouchableOpacity>
             </View>
 
@@ -124,9 +126,9 @@ export const TradePanel: React.FC<TradePanelProps> = ({
             </View>
 
             <View style={styles.infoRow}>
-                 <Text style={styles.infoText}>Price: ${currentPrice}</Text>
+                 <Text style={styles.infoText}>{t('trade.priceLabel', { price: currentPrice })}</Text>
                  <Text style={styles.infoText}>
-                     {isBuy ? 'Get:' : 'Sell:'} 
+                     {isBuy ? t('trade.getLabel') : t('trade.sellLabel')}
                      <Text style={styles.cryptoAmountText}>
                          {` ${cryptoAmount.toFixed(6)} ${symbol}`}
                      </Text>
@@ -142,7 +144,7 @@ export const TradePanel: React.FC<TradePanelProps> = ({
                     <ActivityIndicator color="#1E1E1E" />
                 ) : (
                     <Text style={styles.actionButtonText}>
-                        {isBuy ? 'Buy' : 'Sell'} {symbol}
+                        {isBuy ? t('trade.buySymbol', { symbol }) : t('trade.sellSymbol', { symbol })}
                     </Text>
                 )}
             </TouchableOpacity>
@@ -155,34 +157,34 @@ export const TradePanel: React.FC<TradePanelProps> = ({
             >
                 <View style={styles.modalOverlay}>
                     <View style={styles.modalContainer}>
-                        <Text style={styles.modalTitle}>Confirm {isBuy ? 'Purchase' : 'Sale'}</Text>
-                        
+                        <Text style={styles.modalTitle}>{isBuy ? t('exchange.confirmPurchase') : t('exchange.confirmSale')}</Text>
+
                         <Text style={styles.modalText}>
-                            Confirm in <Text style={styles.modalConfirmText}>{timeLeft}s</Text>
+                            {t('exchange.confirmIn')}<Text style={styles.modalConfirmText}>{timeLeft}s</Text>
                         </Text>
 
                         <View style={styles.summaryContainer}>
                             <View style={styles.summaryRow}>
                                 <Text style={styles.summaryLabel}>
-                                    {isBuy ? 'Spend:' : 'Get:'}
+                                    {isBuy ? t('exchange.spend') : t('exchange.get')}
                                 </Text>
                                 <Text style={styles.summaryValue}>${numericUsdAmount.toFixed(2)}</Text>
                             </View>
-                            
+
                             <View style={styles.summaryRow}>
-                                <Text style={styles.summaryLabel}>Price:</Text>
+                                <Text style={styles.summaryLabel}>{t('exchange.price')}</Text>
                                 {isQuoteLoading ? (
                                     <ActivityIndicator size="small" color="#83EDA6" />
                                 ) : (
                                     <Text style={styles.summaryValue}>${quotePrice}</Text>
                                 )}
                             </View>
-                            
+
                             <View style={styles.divider} />
-                            
+
                             <View style={styles.summaryRow}>
                                 <Text style={styles.summaryLabel}>
-                                    {isBuy ? 'Receive:' : 'Sell:'}
+                                    {isBuy ? t('exchange.receive') : t('exchange.sell')}
                                 </Text>
                                 <Text style={[styles.summaryValue, styles.modalCryptoAmountText]}>
                                     {cryptoAmount.toFixed(6)} {symbol}
@@ -191,19 +193,19 @@ export const TradePanel: React.FC<TradePanelProps> = ({
                         </View>
 
                         <View style={styles.modalButtonsRow}>
-                            <TouchableOpacity 
+                            <TouchableOpacity
                                 style={[styles.modalButton, styles.modalButtonCancel]}
                                 onPress={() => setModalVisible(false)}
                             >
-                                <Text style={styles.modalButtonTextCancel}>Cancel</Text>
+                                <Text style={styles.modalButtonTextCancel}>{t('common.cancel')}</Text>
                             </TouchableOpacity>
 
-                            <TouchableOpacity 
+                            <TouchableOpacity
                                 style={[styles.modalButton, isBuy ? styles.modalButtonConfirmBuy : styles.modalButtonConfirmSell]}
                                 onPress={handleConfirm}
                                 disabled={isQuoteLoading}
                             >
-                                <Text style={styles.modalButtonTextConfirm}>Confirm</Text>
+                                <Text style={styles.modalButtonTextConfirm}>{t('common.confirm')}</Text>
                             </TouchableOpacity>
                         </View>
                     </View>

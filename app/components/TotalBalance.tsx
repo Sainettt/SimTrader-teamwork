@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, ActivityIndicator, TouchableOpacity, StyleSheet } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { appStyles } from '../styles/appStyles';
 import { moderateScale, scale } from '../utils/responsive';
 
@@ -18,9 +19,10 @@ const TotalBalance: React.FC<TotalBalanceProps> = ({
     changePercent = "0.00", 
     onTopUpPress, 
     onWithdrawPress,
-    loading 
+    loading
 }) => {
-    
+    const { t } = useTranslation();
+
     const isPositive = parseFloat(changeValue) >= 0;
     const sign = isPositive && parseFloat(changeValue) > 0 ? '+' : '';
     const color = isPositive ? '#83EDA6' : '#EB5B5B';
@@ -28,7 +30,7 @@ const TotalBalance: React.FC<TotalBalanceProps> = ({
     return (
         <View>
             <View style={appStyles.totalBalanceContainer}>
-                <Text style={appStyles.totalBalanceText}>Total balance</Text>
+                <Text style={appStyles.totalBalanceText}>{t('totalBalance.label')}</Text>
             </View>
             
             <View style={styles.container}>
@@ -39,7 +41,7 @@ const TotalBalance: React.FC<TotalBalanceProps> = ({
                         <>
                             <Text style={styles.balanceText}>{balance}$</Text>
                             <View style={styles.pnlContainer}>
-                                <Text style={styles.pnlLabel}>PnL Today: </Text>
+                                <Text style={styles.pnlLabel}>{t('totalBalance.pnlToday')}</Text>
                                 <Text style={[styles.pnlValue, { color }]}>
                                     {sign}{changeValue}$ ({sign}{changePercent}%)
                                 </Text>
@@ -50,11 +52,11 @@ const TotalBalance: React.FC<TotalBalanceProps> = ({
 
                 <View style={styles.buttonsContainer}>
                     <TouchableOpacity style={styles.actionButton} onPress={onTopUpPress}>
-                        <Text style={styles.buttonText}>Top Up</Text>
+                        <Text style={styles.buttonText}>{t('totalBalance.topUp')}</Text>
                     </TouchableOpacity>
-                    
+
                     <TouchableOpacity style={[styles.actionButton, styles.withdrawButton]} onPress={onWithdrawPress}>
-                        <Text style={styles.buttonText}>Withdraw</Text>
+                        <Text style={styles.buttonText}>{t('totalBalance.withdraw')}</Text>
                     </TouchableOpacity>
                 </View>
             </View>

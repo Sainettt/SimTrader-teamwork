@@ -2,6 +2,7 @@ import React, { useState, useContext, useCallback } from 'react';
 import { View, FlatList, ListRenderItem, Text, ActivityIndicator, StyleSheet } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useTranslation } from 'react-i18next';
 
 import { appStyles } from '../../styles/appStyles';
 import UpperText from '../../components/UpperText';
@@ -14,6 +15,7 @@ import { moderateScale, scale, verticalScale } from '../../utils/responsive';
 
 const TransactionHistoryScreen = ({ navigation }: any) => {
   const { userId } = useContext(AuthContext);
+  const { t } = useTranslation();
   const [transactions, setTransactions] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -63,7 +65,7 @@ const TransactionHistoryScreen = ({ navigation }: any) => {
     >
 
       <UpperText
-        title="History"
+        title={t('history.title')}
         onPress={goBack}
       />
 
@@ -82,7 +84,7 @@ const TransactionHistoryScreen = ({ navigation }: any) => {
                 removeClippedSubviews
                 ListEmptyComponent={
                     <View style={styles.center}>
-                        <Text style={styles.emptyText}>No transactions yet</Text>
+                        <Text style={styles.emptyText}>{t('history.noTransactions')}</Text>
                     </View>
                 }
             />

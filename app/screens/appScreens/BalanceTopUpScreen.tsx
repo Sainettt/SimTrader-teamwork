@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useFocusEffect } from '@react-navigation/native';
+import { useTranslation } from 'react-i18next';
 import { appStyles } from '../../styles/appStyles';
 import BottomBar from '../../components/BottomBar';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
@@ -28,6 +29,7 @@ const BalanceTopUpScreen: React.FC<BalanceTopUpScreenProps> = ({
   navigation,
 }) => {
   const { userId } = useContext(AuthContext);
+  const { t } = useTranslation();
   const [pln, setPln] = useState('0');
   const [usd, setUsd] = useState('0');
   const [rate, setRate] = useState<number | null>(null);
@@ -98,8 +100,8 @@ const BalanceTopUpScreen: React.FC<BalanceTopUpScreenProps> = ({
     const amount = parseFloat(usd);
     if (amount <= 0 || isNaN(amount)) {
       setAlertConfig({
-        title: 'Error',
-        message: 'Please enter a valid amount',
+        title: t('common.error'),
+        message: t('topUp.invalidAmount'),
         type: 'error'
       });
       setAlertVisible(true);
@@ -111,8 +113,8 @@ const BalanceTopUpScreen: React.FC<BalanceTopUpScreenProps> = ({
   const handleConfirmTopUp = async () => {
     if (!userId) {
       setAlertConfig({
-        title: 'Error',
-        message: 'User not authenticated',
+        title: t('common.error'),
+        message: t('topUp.notAuthenticated'),
         type: 'error'
       });
       setAlertVisible(true);
@@ -127,8 +129,8 @@ const BalanceTopUpScreen: React.FC<BalanceTopUpScreenProps> = ({
       setModalVisible(false);
 
       setAlertConfig({
-        title: 'Success!',
-        message: `Successfully topped up ${amountUSD.toFixed(2)} USD`,
+        title: t('common.success'),
+        message: t('topUp.successMessage', { amount: amountUSD.toFixed(2) }),
         type: 'success'
       })
       setAlertVisible(true);
@@ -136,8 +138,8 @@ const BalanceTopUpScreen: React.FC<BalanceTopUpScreenProps> = ({
     } catch (error: any) {
       setModalVisible(false);
       setAlertConfig({
-        title: 'Error',
-        message: error.response?.data?.message || 'Top up failed',
+        title: t('common.error'),
+        message: error.response?.data?.message || t('topUp.failed'),
         type: 'error'
       });
       setAlertVisible(true);
@@ -149,7 +151,7 @@ const BalanceTopUpScreen: React.FC<BalanceTopUpScreenProps> = ({
   return (
     <SafeAreaView style={appStyles.flexContainer} edges={['top', 'left', 'right']}>
       <View style={appStyles.container}>
-        <UpperText title="Top Up Balance" onPress={() => navigation.goBack()} />
+        <UpperText title={t('topUp.title')} onPress={() => navigation.goBack()} />
 
         <View style={localStyles.contentCenter}>
           <View style={localStyles.inputsContainer}>
@@ -200,7 +202,7 @@ const BalanceTopUpScreen: React.FC<BalanceTopUpScreenProps> = ({
             style={[appStyles.topUpContinueButton, localStyles.continueButtonSpacing]}
             onPress={handleContinue}
           >
-            <Text style={localStyles.continueButtonText}>Continue</Text>
+            <Text style={localStyles.continueButtonText}>{t('common.continue')}</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -228,10 +230,10 @@ const BalanceTopUpScreen: React.FC<BalanceTopUpScreenProps> = ({
       >
         <View style={localStyles.modalOverlay}>
           <View style={localStyles.modalContainer}>
-            <Text style={localStyles.modalTitle}>Confirm Top Up</Text>
+            <Text style={localStyles.modalTitle}>{t('topUp.confirmTitle')}</Text>
 
             <Text style={localStyles.modalText}>
-              Are you sure you want to add funds to your balance?
+              {t('topUp.confirmQuestion')}
             </Text>
 
             <Text style={localStyles.modalAmount}>{usd} USD</Text>
@@ -241,7 +243,7 @@ const BalanceTopUpScreen: React.FC<BalanceTopUpScreenProps> = ({
                 style={[localStyles.modalButton, localStyles.modalButtonCancel]}
                 onPress={() => setModalVisible(false)}
               >
-                <Text style={localStyles.modalButtonTextCancel}>Cancel</Text>
+                <Text style={localStyles.modalButtonTextCancel}>{t('common.cancel')}</Text>
               </TouchableOpacity>
 
               <TouchableOpacity
@@ -251,7 +253,7 @@ const BalanceTopUpScreen: React.FC<BalanceTopUpScreenProps> = ({
                 ]}
                 onPress={handleConfirmTopUp}
               >
-                <Text style={localStyles.modalButtonTextConfirm}>Confirm</Text>
+                <Text style={localStyles.modalButtonTextConfirm}>{t('common.confirm')}</Text>
               </TouchableOpacity>
             </View>
           </View>

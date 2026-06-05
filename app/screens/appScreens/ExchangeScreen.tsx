@@ -9,6 +9,7 @@ import React, {
 import { View, Text, StyleSheet, Dimensions } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useFocusEffect } from '@react-navigation/native';
+import { useTranslation } from 'react-i18next';
 import { AppStackParamList } from '../../src/navigation/appTypes';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import UpperText from '../../components/UpperText';
@@ -35,6 +36,7 @@ const ExchangeScreen: React.FC<ExchangeScreenProps> = ({
   route,
 }) => {
   const { userId } = useContext(AuthContext);
+  const { t } = useTranslation();
 
   const {
     coinId,
@@ -55,7 +57,7 @@ const ExchangeScreen: React.FC<ExchangeScreenProps> = ({
 
   const [ownedAmount, setOwnedAmount] = useState(initialOwnedAmount);
   const [walletUsdBalance, setWalletUsdBalance] =
-    useState<string>('Loading...');
+    useState<string>(t('common.loading'));
 
   const [isTrading, setIsTrading] = useState(false);
 
@@ -139,16 +141,24 @@ const ExchangeScreen: React.FC<ExchangeScreenProps> = ({
       if (type === 'buy') {
         await tradeAPI.buy(userId, symbol, amount, Number(currentPrice));
         setAlertConfig({
-           title: 'Success!',
-           message: `Successfully bought ${amount.toFixed(6)} ${symbol} (${(amount * Number(currentPrice)).toFixed(2)} USD)`,
+           title: t('common.success'),
+           message: t('exchange.boughtSuccess', {
+             amount: amount.toFixed(6),
+             symbol,
+             usd: (amount * Number(currentPrice)).toFixed(2),
+           }),
            type: 'success'
        });
        setAlertVisible(true);
       } else {
         await tradeAPI.sell(userId, symbol, amount, Number(currentPrice));
         setAlertConfig({
-          title: 'Success!',
-          message: `Successfully sold ${amount.toFixed(6)} ${symbol} (${(amount * Number(currentPrice)).toFixed(2)} USD)`,
+          title: t('common.success'),
+          message: t('exchange.soldSuccess', {
+            amount: amount.toFixed(6),
+            symbol,
+            usd: (amount * Number(currentPrice)).toFixed(2),
+          }),
           type: 'success'
       });
       setAlertVisible(true);
@@ -156,9 +166,9 @@ const ExchangeScreen: React.FC<ExchangeScreenProps> = ({
 
       await fetchBalances();
     } catch (e: any) {
-      const errorMsg = e.response?.data?.message || 'Transaction failed';
+      const errorMsg = e.response?.data?.message || t('exchange.transactionFailed');
       setAlertConfig({
-        title: 'Error',
+        title: t('common.error'),
         message: errorMsg,
         type: 'error'
       });
@@ -166,7 +176,7 @@ const ExchangeScreen: React.FC<ExchangeScreenProps> = ({
     } finally {
       setIsTrading(false);
     }
-  }, [userId, symbol, currentPrice, fetchBalances]);
+  }, [userId, symbol, currentPrice, fetchBalances, t]);
 
   const isPositive = parseFloat(priceChangePercent) >= 0;
   const balanceInUsd = useMemo(
@@ -190,7 +200,7 @@ const ExchangeScreen: React.FC<ExchangeScreenProps> = ({
         <View style={styles.mainCintentContainer}>
           <View>
             <View style={styles.priceContainer}>
-              <Text style={styles.totalLabel}>Current Price</Text>
+              <Text style={styles.totalLabel}>{t('exchange.currentPrice')}</Text>
               <Text style={styles.bigPrice}>${currentPrice}</Text>
 
               <View style={styles.rowDirectionContainer}>
@@ -209,7 +219,7 @@ const ExchangeScreen: React.FC<ExchangeScreenProps> = ({
 
             <View style={styles.balanceContainerWrapper}>
               <Text style={styles.balanceInfoText}>
-                Your {symbol}:{' '}
+                {t('exchange.yourBalance', { symbol })}
                 <Text style={styles.whiteBold}>
                   {Number(ownedAmount).toFixed(6)}
                 </Text>
@@ -217,7 +227,7 @@ const ExchangeScreen: React.FC<ExchangeScreenProps> = ({
               </Text>
 
               <Text style={styles.balanceInfoText}>
-                Available USD:{' '}
+                {t('exchange.availableUsd')}
                 <Text style={styles.greenBold}>${walletUsdBalance}</Text>
               </Text>
             </View>

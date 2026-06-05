@@ -1,11 +1,12 @@
 import React from 'react';
-import { 
-  TouchableOpacity, 
-  Text, 
-  Image, 
-  StyleSheet, 
-  View 
+import {
+  TouchableOpacity,
+  Text,
+  Image,
+  StyleSheet,
+  View
 } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { scale, verticalScale, moderateScale } from '../utils/responsive';
 
 interface Props {
@@ -14,19 +15,20 @@ interface Props {
 }
 
 const GoogleButton: React.FC<Props> = ({ onPress, disabled }) => {
+  const { t } = useTranslation();
   return (
-    <TouchableOpacity 
-      style={[styles.button, disabled && styles.disabled]} 
+    <TouchableOpacity
+      style={[styles.button, disabled && styles.disabled]}
       onPress={onPress}
       disabled={disabled}
       activeOpacity={0.7}
     >
       <View style={styles.contentWrapper}>
         <Image
-          source={require('../assets/images/google-logo.png')} 
-          style={styles.logo} 
+          source={require('../assets/images/google-logo.png')}
+          style={styles.logo}
         />
-        <Text style={styles.text}>Sign in with Google</Text>
+        <Text style={styles.text}>{t('auth.googleSignIn')}</Text>
       </View>
     </TouchableOpacity>
   );

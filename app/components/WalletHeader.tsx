@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import TotalBalance from './TotalBalance';
 import { moderateScale, scale, verticalScale } from '../utils/responsive';
 
@@ -13,29 +14,30 @@ type Props = {
 };
 
 const WalletHeader: React.FC<Props> = ({ balance, changeValue, changePercent,loading = false, onTopUpPress, onWithdrawPress }) => {
+  const { t } = useTranslation();
   return (
     <View style={styles.headerWrapper}>
-      <TotalBalance 
-        balance={balance} 
+      <TotalBalance
+        balance={balance}
         loading={loading}
         changeValue={changeValue}
-        changePercent={changePercent} 
+        changePercent={changePercent}
         onTopUpPress={onTopUpPress}
-        onWithdrawPress={onWithdrawPress} 
+        onWithdrawPress={onWithdrawPress}
       />
 
       <View style={styles.tableHeaderRow}>
-        
+
         <View style={styles.leftSide}>
-          <Text style={styles.columnHeaderText}>Coin</Text>
+          <Text style={styles.columnHeaderText}>{t('wallet.coin')}</Text>
         </View>
 
         <View style={styles.centerSide}>
-          <Text style={styles.columnHeaderText}>Holdings</Text>
+          <Text style={styles.columnHeaderText}>{t('wallet.holdings')}</Text>
         </View>
 
         <View style={styles.rightSide}>
-          <Text style={styles.columnHeaderText}>Value</Text>
+          <Text style={styles.columnHeaderText}>{t('wallet.value')}</Text>
         </View>
 
       </View>

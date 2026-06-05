@@ -7,6 +7,7 @@ import {
   Alert,
   Text,
 } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import LoginFields from '../../components/LogInFields';
 
 import AuthAskText from '../../components/AuthAskText';
@@ -21,22 +22,23 @@ type Props = NativeStackScreenProps<AuthStackParamList, 'Login'>;
 
 const LoginScreen: React.FC<Props> = ({ navigation }: Props) => {
   const { login, isLoading, loginWithGoogle } = useContext(AuthContext);
-  
+  const { t } = useTranslation();
+
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleLogin = () => {
     if (!username) {
-      Alert.alert('Error', 'Please enter a username');
+      Alert.alert(t('common.error'), t('auth.errors.enterUsername'));
       return;
     }
     if (!email) {
-      Alert.alert('Error', 'Please enter an email');
+      Alert.alert(t('common.error'), t('auth.errors.enterEmail'));
       return;
     }
     if (!password) {
-      Alert.alert('Error', 'Please enter a password');
+      Alert.alert(t('common.error'), t('auth.errors.enterPassword'));
       return;
     }
     login(email, password);
@@ -58,11 +60,11 @@ const LoginScreen: React.FC<Props> = ({ navigation }: Props) => {
           <ActivityIndicator size="large" color="#0000ff" />
         ) : (
           <View style={authStyles.authContainer}>
-            <AuthSubmitButton buttonText="Sign In" onPress={handleLogin} />
+            <AuthSubmitButton buttonText={t('auth.signIn')} onPress={handleLogin} />
 
             <View style={authStyles.separatorContainer}>
               <View style={authStyles.separatorLine} />
-              <Text style={authStyles.separatorText}>OR</Text>
+              <Text style={authStyles.separatorText}>{t('common.or')}</Text>
               <View style={authStyles.separatorLine} />
             </View>
 
@@ -71,8 +73,8 @@ const LoginScreen: React.FC<Props> = ({ navigation }: Props) => {
         )}
 
         <AuthAskText
-          mainText="Don`t have an account yet? "
-          buttonText="Sign Up"
+          mainText={t('auth.noAccount')}
+          buttonText={t('auth.signUp')}
           onPress={() => {
             navigation.navigate('Register');
           }}

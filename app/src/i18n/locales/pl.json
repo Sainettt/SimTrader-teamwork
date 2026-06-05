@@ -1,0 +1,141 @@
+{
+  "common": {
+    "ok": "OK",
+    "cancel": "Anuluj",
+    "confirm": "Potwierdź",
+    "continue": "Kontynuuj",
+    "loading": "Ładowanie...",
+    "loadingData": "Ładowanie danych...",
+    "error": "Błąd",
+    "success": "Sukces!",
+    "or": "LUB"
+  },
+  "auth": {
+    "signIn": "Zaloguj się",
+    "signUp": "Zarejestruj się",
+    "noAccount": "Nie masz jeszcze konta? ",
+    "haveAccount": "Masz już konto? ",
+    "googleSignIn": "Zaloguj się przez Google",
+    "fields": {
+      "username": "nazwa użytkownika",
+      "email": "email",
+      "password": "hasło",
+      "confirmPassword": "potwierdź hasło",
+      "placeholderUsername": "Wpisz swoją nazwę użytkownika",
+      "placeholderEmail": "Wpisz swój email",
+      "placeholderPassword": "Wpisz swoje hasło",
+      "placeholderConfirmPassword": "Potwierdź swoje hasło"
+    },
+    "errors": {
+      "enterUsername": "Wprowadź nazwę użytkownika",
+      "enterEmail": "Wprowadź email",
+      "enterPassword": "Wprowadź hasło",
+      "invalidEmail": "Wprowadź poprawny adres email",
+      "invalidPassword": "Hasło musi mieć co najmniej 6 znaków, zawierać przynajmniej jedną wielką literę i jeden znak specjalny",
+      "passwordsMismatch": "Hasła nie są takie same",
+      "registrationError": "Błąd rejestracji",
+      "loginError": "Błąd logowania",
+      "googleError": "Błąd Google",
+      "invalidServerResponse": "Nieprawidłowa odpowiedź serwera",
+      "somethingWentWrong": "Coś poszło nie tak",
+      "googlePlayUnavailable": "Usługi Google Play niedostępne",
+      "failedToAuth": "Nie udało się zalogować do serwera"
+    }
+  },
+  "main": {
+    "trendingTitle": "Popularne waluty",
+    "trending": "Popularne",
+    "lastPrice": "Ostatnia cena",
+    "change24h": "Zmiana 24h%",
+    "viewAll": "Zobacz wszystkie"
+  },
+  "totalBalance": {
+    "label": "Saldo całkowite",
+    "topUp": "Doładuj",
+    "withdraw": "Wypłać",
+    "pnlToday": "PnL dziś: "
+  },
+  "wallet": {
+    "title": "Portfel",
+    "coin": "Moneta",
+    "holdings": "Stan",
+    "value": "Wartość",
+    "noAssets": "Brak aktywów"
+  },
+  "allAssets": {
+    "title": "Wszystkie kryptowaluty"
+  },
+  "exchange": {
+    "currentPrice": "Aktualna cena",
+    "yourBalance": "Twoje {{symbol}}: ",
+    "availableUsd": "Dostępne USD: ",
+    "buy": "Kup",
+    "sell": "Sprzedaj",
+    "get": "Otrzymasz:",
+    "spend": "Wydasz:",
+    "price": "Cena:",
+    "receive": "Otrzymasz:",
+    "confirmPurchase": "Potwierdź zakup",
+    "confirmSale": "Potwierdź sprzedaż",
+    "confirmIn": "Potwierdź w ",
+    "boughtSuccess": "Pomyślnie zakupiono {{amount}} {{symbol}} ({{usd}} USD)",
+    "soldSuccess": "Pomyślnie sprzedano {{amount}} {{symbol}} ({{usd}} USD)",
+    "transactionFailed": "Transakcja nieudana"
+  },
+  "payment": {
+    "title": "Doładuj portfel",
+    "selectMethod": "Wybierz metodę płatności",
+    "recommended": "Polecane",
+    "other": "Inne"
+  },
+  "topUp": {
+    "title": "Doładuj saldo",
+    "confirmTitle": "Potwierdź doładowanie",
+    "confirmQuestion": "Czy na pewno chcesz dodać środki do swojego salda?",
+    "invalidAmount": "Wprowadź poprawną kwotę",
+    "notAuthenticated": "Użytkownik niezalogowany",
+    "successMessage": "Pomyślnie doładowano {{amount}} USD",
+    "failed": "Doładowanie nieudane"
+  },
+  "withdraw": {
+    "title": "Wypłać USD",
+    "amountLabel": "Kwota do wypłaty ($)",
+    "available": "Dostępne: ",
+    "infoText": "Środki zostaną natychmiast przelane na podpiętą kartę bankową.",
+    "button": "Wypłać",
+    "insufficientFunds": "Niewystarczające środki",
+    "withdrawnMessage": "{{amount}} USD wypłacono na kartę",
+    "failed": "Wypłata nieudana"
+  },
+  "history": {
+    "title": "Historia",
+    "noTransactions": "Brak transakcji",
+    "topUp": "Doładowanie",
+    "withdraw": "Wypłata",
+    "buy": "Kupno {{currency}}",
+    "sell": "Sprzedaż {{currency}}",
+    "transaction": "Transakcja"
+  },
+  "trade": {
+    "buy": "Kup",
+    "sell": "Sprzedaj",
+    "buySymbol": "Kup {{symbol}}",
+    "sellSymbol": "Sprzedaj {{symbol}}",
+    "priceLabel": "Cena: ${{price}}",
+    "getLabel": "Otrzymasz:",
+    "sellLabel": "Sprzedasz:"
+  },
+  "settings": {
+    "title": "Ustawienia",
+    "profile": "Profil",
+    "general": "Ogólne",
+    "language": "Język",
+    "logOut": "Wyloguj się",
+    "languageModal": {
+      "title": "Wybierz język",
+      "english": "English",
+      "polish": "Polski",
+      "german": "Deutsch"
+    }
+  }
+}

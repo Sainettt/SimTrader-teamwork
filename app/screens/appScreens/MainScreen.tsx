@@ -2,6 +2,7 @@ import React, { useState, useContext, useCallback, useRef} from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useFocusEffect } from '@react-navigation/native';
+import { useTranslation } from 'react-i18next';
 import { appStyles } from '../../styles/appStyles';
 import InfoTrendCurrencies from '../../components/InfoTrendCurrencies';
 import BottomBar from '../../components/BottomBar';
@@ -14,6 +15,7 @@ type MainProps = NativeStackScreenProps<AppStackParamList, 'Main'>;
 
 const MainScreen: React.FC<MainProps> = ({ navigation }: MainProps) => {
   const {userId} = useContext(AuthContext);
+  const { t } = useTranslation();
   const [totalBalance, setTotalBalance] = useState('0.00');
   const [cryptoAssets, setCryptoAssets] = useState([]);
   const [portfolioAssets, setPortfolioAssets] = useState<any[]>([]);
@@ -91,7 +93,7 @@ const MainScreen: React.FC<MainProps> = ({ navigation }: MainProps) => {
     <SafeAreaView style={appStyles.flexContainer} edges={['top', 'left', 'right']}>
       <View style={appStyles.container}>
         <View style={appStyles.headerContainer}>
-          <Text style={appStyles.titleHeader}>Trending currencies</Text>
+          <Text style={appStyles.titleHeader}>{t('main.trendingTitle')}</Text>
         </View>
         <TotalBalance
           balance={totalBalance}
@@ -107,7 +109,7 @@ const MainScreen: React.FC<MainProps> = ({ navigation }: MainProps) => {
             style={appStyles.viewAllButton}
             onPress={goToAllAssets}
           >
-            <Text style={appStyles.viewAllText}>View All</Text>
+            <Text style={appStyles.viewAllText}>{t('main.viewAll')}</Text>
           </TouchableOpacity>
         </View>
       </View>

@@ -2,6 +2,7 @@ import React, { useState, useContext, useCallback } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, ActivityIndicator } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useTranslation } from 'react-i18next';
 import { appStyles } from '../../styles/appStyles';
 import { moderateScale, scale, verticalScale } from '../../utils/responsive';
 import UpperText from '../../components/UpperText';
@@ -12,6 +13,7 @@ import { CustomAlert } from '../../components/CustomAlert';
 
 const WithdrawScreen = ({ navigation }: any) => {
     const { userId } = useContext(AuthContext);
+    const { t } = useTranslation();
     const [amount, setAmount] = useState('');
     const [loading, setLoading] = useState(false);
     const [availableBalance, setAvailableBalance] = useState<string | null>(null);
@@ -48,8 +50,8 @@ const WithdrawScreen = ({ navigation }: any) => {
     const handleWithdraw = async () => {
         if (!amount || isNaN(Number(amount)) || Number(amount) <= 0) {
             setAlertConfig({
-                title: 'Error',
-                message: 'Please enter a valid amount',
+                title: t('common.error'),
+                message: t('topUp.invalidAmount'),
                 type: 'error'
               });
               setAlertVisible(true);
@@ -58,8 +60,8 @@ const WithdrawScreen = ({ navigation }: any) => {
 
         if (availableBalance && Number(amount) > Number(availableBalance)) {
             setAlertConfig({
-                title: 'Error',
-                message: 'Insufficient funds',
+                title: t('common.error'),
+                message: t('withdraw.insufficientFunds'),
                 type: 'error'
               });
               setAlertVisible(true);
@@ -70,15 +72,15 @@ const WithdrawScreen = ({ navigation }: any) => {
         try {
             await walletAPI.withdraw(Number(userId), Number(amount));
             setAlertConfig({
-                title: 'Success',
-                message: `${amount} USD withdrawn to your card`,
+                title: t('common.success'),
+                message: t('withdraw.withdrawnMessage', { amount }),
                 type: 'success'
               });
               setAlertVisible(true);
         } catch (e: any) {
-            const msg = e.response?.data?.message || 'Withdrawal failed';
+            const msg = e.response?.data?.message || t('withdraw.failed');
             setAlertConfig({
-                title: 'Error',
+                title: t('common.error'),
                 message: msg,
                 type: 'error'
               });
@@ -96,17 +98,17 @@ const WithdrawScreen = ({ navigation }: any) => {
 
     return (
         <SafeAreaView style={appStyles.containerWithoutPadding} edges={['top', 'left', 'right']}>
-            <UpperText title="Withdraw USD" onPress={() => navigation.goBack()} />
+            <UpperText title={t('withdraw.title')} onPress={() => navigation.goBack()} />
 
             <View style={styles.content}>
 
                 <View style={styles.balanceHeader}>
-                    <Text style={styles.label}>Amount to withdraw ($)</Text>
-                    
+                    <Text style={styles.label}>{t('withdraw.amountLabel')}</Text>
+
                     {availableBalance !== null ? (
                         <TouchableOpacity onPress={handleSetMax}>
                             <Text style={styles.availableText}>
-                                Available: <Text style={styles.availableValue}>${availableBalance}</Text>
+                                {t('withdraw.available')}<Text style={styles.availableValue}>${availableBalance}</Text>
                             </Text>
                         </TouchableOpacity>
                     ) : (
@@ -124,7 +126,7 @@ const WithdrawScreen = ({ navigation }: any) => {
                 />
 
                 <Text style={styles.infoText}>
-                    Funds will be transferred to your linked bank card instantly.
+                    {t('withdraw.infoText')}
                 </Text>
 
                 <TouchableOpacity 
@@ -135,7 +137,7 @@ const WithdrawScreen = ({ navigation }: any) => {
                     {loading ? (
                         <ActivityIndicator color="#FFF" />
                     ) : (
-                        <Text style={styles.buttonText}>Withdraw</Text>
+                        <Text style={styles.buttonText}>{t('withdraw.button')}</Text>
                     )}
                 </TouchableOpacity>
             </View>

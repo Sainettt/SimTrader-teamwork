@@ -1,0 +1,141 @@
+{
+  "common": {
+    "ok": "OK",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "continue": "Continue",
+    "loading": "Loading...",
+    "loadingData": "Loading data...",
+    "error": "Error",
+    "success": "Success!",
+    "or": "OR"
+  },
+  "auth": {
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "noAccount": "Don't have an account yet? ",
+    "haveAccount": "Already have an account? ",
+    "googleSignIn": "Sign in with Google",
+    "fields": {
+      "username": "username",
+      "email": "email",
+      "password": "password",
+      "confirmPassword": "confirm password",
+      "placeholderUsername": "Enter your username",
+      "placeholderEmail": "Enter your email",
+      "placeholderPassword": "Enter your password",
+      "placeholderConfirmPassword": "Confirm your password"
+    },
+    "errors": {
+      "enterUsername": "Please enter a username",
+      "enterEmail": "Please enter an email",
+      "enterPassword": "Please enter a password",
+      "invalidEmail": "Please enter a valid email address",
+      "invalidPassword": "Password must be at least 6 characters long, contain at least one uppercase letter and one special character",
+      "passwordsMismatch": "Passwords do not match",
+      "registrationError": "Registration Error",
+      "loginError": "Login Error",
+      "googleError": "Google Error",
+      "invalidServerResponse": "Invalid server response",
+      "somethingWentWrong": "Something went wrong",
+      "googlePlayUnavailable": "Google Play Services not available",
+      "failedToAuth": "Failed to authenticate with server"
+    }
+  },
+  "main": {
+    "trendingTitle": "Trending currencies",
+    "trending": "Trending",
+    "lastPrice": "Last Price",
+    "change24h": "24h chg%",
+    "viewAll": "View All"
+  },
+  "totalBalance": {
+    "label": "Total balance",
+    "topUp": "Top Up",
+    "withdraw": "Withdraw",
+    "pnlToday": "PnL Today: "
+  },
+  "wallet": {
+    "title": "Wallet",
+    "coin": "Coin",
+    "holdings": "Holdings",
+    "value": "Value",
+    "noAssets": "No assets found"
+  },
+  "allAssets": {
+    "title": "All Crypto Assets"
+  },
+  "exchange": {
+    "currentPrice": "Current Price",
+    "yourBalance": "Your {{symbol}}: ",
+    "availableUsd": "Available USD: ",
+    "buy": "Buy",
+    "sell": "Sell",
+    "get": "Get:",
+    "spend": "Spend:",
+    "price": "Price:",
+    "receive": "Receive:",
+    "confirmPurchase": "Confirm Purchase",
+    "confirmSale": "Confirm Sale",
+    "confirmIn": "Confirm in ",
+    "boughtSuccess": "Successfully bought {{amount}} {{symbol}} ({{usd}} USD)",
+    "soldSuccess": "Successfully sold {{amount}} {{symbol}} ({{usd}} USD)",
+    "transactionFailed": "Transaction failed"
+  },
+  "payment": {
+    "title": "Fund your wallet",
+    "selectMethod": "Select a payment method",
+    "recommended": "Recommended",
+    "other": "Other"
+  },
+  "topUp": {
+    "title": "Top Up Balance",
+    "confirmTitle": "Confirm Top Up",
+    "confirmQuestion": "Are you sure you want to add funds to your balance?",
+    "invalidAmount": "Please enter a valid amount",
+    "notAuthenticated": "User not authenticated",
+    "successMessage": "Successfully topped up {{amount}} USD",
+    "failed": "Top up failed"
+  },
+  "withdraw": {
+    "title": "Withdraw USD",
+    "amountLabel": "Amount to withdraw ($)",
+    "available": "Available: ",
+    "infoText": "Funds will be transferred to your linked bank card instantly.",
+    "button": "Withdraw",
+    "insufficientFunds": "Insufficient funds",
+    "withdrawnMessage": "{{amount}} USD withdrawn to your card",
+    "failed": "Withdrawal failed"
+  },
+  "history": {
+    "title": "History",
+    "noTransactions": "No transactions yet",
+    "topUp": "Top Up",
+    "withdraw": "Withdraw",
+    "buy": "Buy {{currency}}",
+    "sell": "Sell {{currency}}",
+    "transaction": "Transaction"
+  },
+  "trade": {
+    "buy": "Buy",
+    "sell": "Sell",
+    "buySymbol": "Buy {{symbol}}",
+    "sellSymbol": "Sell {{symbol}}",
+    "priceLabel": "Price: ${{price}}",
+    "getLabel": "Get:",
+    "sellLabel": "Sell:"
+  },
+  "settings": {
+    "title": "Settings",
+    "profile": "Profile",
+    "general": "General",
+    "language": "Language",
+    "logOut": "Log Out",
+    "languageModal": {
+      "title": "Choose language",
+      "english": "English",
+      "polish": "Polski",
+      "german": "Deutsch"
+    }
+  }
+}

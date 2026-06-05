@@ -2,6 +2,7 @@ import React, { useState, useCallback, useRef, useContext } from 'react';
 import { View, FlatList, ListRenderItem, Text, ActivityIndicator } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useFocusEffect } from '@react-navigation/native';
+import { useTranslation } from 'react-i18next';
 import BottomBar from '../../components/BottomBar';
 import { appStyles } from '../../styles/appStyles';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
@@ -21,6 +22,7 @@ const AllCryptoAssetsScreen: React.FC<AllCurrenciesProps> = ({
   navigation,
 }) => {
   const { userId } = useContext(AuthContext);
+  const { t } = useTranslation();
   const [allCryptoAssets, setAllCryptoAssets] = useState<Currency[]>([]);
   const [portfolioAssets, setPortfolioAssets] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
@@ -88,7 +90,7 @@ const AllCryptoAssetsScreen: React.FC<AllCurrenciesProps> = ({
     <SafeAreaView style={appStyles.flexContainer} edges={['top', 'left', 'right']}>
       <View style={appStyles.containerWithoutPadding}>
         <UpperText
-          title="All Crypto Assets"
+          title={t('allAssets.title')}
           onPress={goBack}
         />
         {loading && allCryptoAssets.length === 0 ? (
@@ -106,7 +108,7 @@ const AllCryptoAssetsScreen: React.FC<AllCurrenciesProps> = ({
             windowSize={5}
             removeClippedSubviews
             ListEmptyComponent={
-              <Text style={appStyles.emptyListText}>Loading data...</Text>
+              <Text style={appStyles.emptyListText}>{t('common.loadingData')}</Text>
             }
           />
         )}

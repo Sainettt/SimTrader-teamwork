@@ -1,6 +1,7 @@
 import React, { useState, useRef, useContext, useCallback, useMemo } from 'react';
 import { useFocusEffect } from '@react-navigation/native';
 import { View, FlatList, ListRenderItem, Text, StyleSheet } from 'react-native';
+import { useTranslation } from 'react-i18next';
 
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { appStyles } from '../../styles/appStyles';
@@ -27,6 +28,7 @@ type Asset = {
 
 const WalletScreen = ({ navigation }: any) => {
   const { userId } = useContext(AuthContext);
+  const { t } = useTranslation();
   const [totalBalance, setTotalBalance] = useState('0.00');
   const [portfolioAssets, setPortfolioAssets] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
@@ -116,10 +118,10 @@ const WalletScreen = ({ navigation }: any) => {
     () =>
       !loading ? (
         <View style={styles.listEmptyContainer}>
-          <Text style={styles.noAssetsFoundText}>No assets found</Text>
+          <Text style={styles.noAssetsFoundText}>{t('wallet.noAssets')}</Text>
         </View>
       ) : null,
-    [loading],
+    [loading, t],
   );
 
   return (
@@ -127,7 +129,7 @@ const WalletScreen = ({ navigation }: any) => {
       style={appStyles.containerWithoutPadding}
       edges={['top', 'left', 'right']}
     >
-      <UpperText title="Wallet" onPress={goBack} />
+      <UpperText title={t('wallet.title')} onPress={goBack} />
 
       <View style={appStyles.flexContainer}>
         <FlatList

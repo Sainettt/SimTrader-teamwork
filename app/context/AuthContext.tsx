@@ -3,6 +3,7 @@ import { authAPI, setAuthToken } from '../services/api';
 import { Alert } from 'react-native';
 import * as Keychain from 'react-native-keychain';
 import { GoogleSignin, statusCodes, isErrorWithCode } from '@react-native-google-signin/google-signin';
+import i18n from '../src/i18n';
 type UserInfo = {
   id: number;
   username: string;
@@ -124,13 +125,13 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       if (data.token && data.user) {
         await saveSession(data.token, data.user);
       } else {
-        Alert.alert('Login Error', 'Invalid server response');
+        Alert.alert(i18n.t('auth.errors.loginError'), i18n.t('auth.errors.invalidServerResponse'));
       }
     } catch (error: any) {
       console.log(error);
       Alert.alert(
-        'Login Error',
-        error.response?.data?.message || 'Something went wrong',
+        i18n.t('auth.errors.loginError'),
+        error.response?.data?.message || i18n.t('auth.errors.somethingWentWrong'),
       );
     } finally {
       setIsLoading(false);
@@ -152,8 +153,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     } catch (error: any) {
       console.log(error);
       Alert.alert(
-        'Registration Error',
-        error.response?.data?.message || 'Something went wrong',
+        i18n.t('auth.errors.registrationError'),
+        error.response?.data?.message || i18n.t('auth.errors.somethingWentWrong'),
       );
     } finally {
       setIsLoading(false);
@@ -180,7 +181,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       if (data.token && data.user) {
         await saveSession(data.token, data.user);
       } else {
-        Alert.alert('Login Error', 'Server returned invalid data');
+        Alert.alert(i18n.t('auth.errors.loginError'), i18n.t('auth.errors.invalidServerResponse'));
       }
 
     } catch (error) {
@@ -193,14 +194,14 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
             console.log('Sign in is in progress already');
             break;
           case statusCodes.PLAY_SERVICES_NOT_AVAILABLE:
-            Alert.alert('Error', 'Google Play Services not available');
+            Alert.alert(i18n.t('common.error'), i18n.t('auth.errors.googlePlayUnavailable'));
             break;
           default:
-            Alert.alert('Google Error', error.message);
+            Alert.alert(i18n.t('auth.errors.googleError'), error.message);
         }
       } else {
         console.log('Backend or Other Error:', error);
-        Alert.alert('Login Error', 'Failed to authenticate with server');
+        Alert.alert(i18n.t('auth.errors.loginError'), i18n.t('auth.errors.failedToAuth'));
       }
     } finally {
       setIsLoading(false);

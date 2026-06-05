@@ -1,0 +1,141 @@
+{
+  "common": {
+    "ok": "OK",
+    "cancel": "Abbrechen",
+    "confirm": "Bestätigen",
+    "continue": "Weiter",
+    "loading": "Wird geladen...",
+    "loadingData": "Daten werden geladen...",
+    "error": "Fehler",
+    "success": "Erfolg!",
+    "or": "ODER"
+  },
+  "auth": {
+    "signIn": "Anmelden",
+    "signUp": "Registrieren",
+    "noAccount": "Noch kein Konto? ",
+    "haveAccount": "Bereits ein Konto? ",
+    "googleSignIn": "Mit Google anmelden",
+    "fields": {
+      "username": "Benutzername",
+      "email": "E-Mail",
+      "password": "Passwort",
+      "confirmPassword": "Passwort bestätigen",
+      "placeholderUsername": "Benutzernamen eingeben",
+      "placeholderEmail": "E-Mail eingeben",
+      "placeholderPassword": "Passwort eingeben",
+      "placeholderConfirmPassword": "Passwort bestätigen"
+    },
+    "errors": {
+      "enterUsername": "Bitte Benutzernamen eingeben",
+      "enterEmail": "Bitte E-Mail eingeben",
+      "enterPassword": "Bitte Passwort eingeben",
+      "invalidEmail": "Bitte eine gültige E-Mail-Adresse eingeben",
+      "invalidPassword": "Passwort muss mindestens 6 Zeichen lang sein und einen Großbuchstaben und ein Sonderzeichen enthalten",
+      "passwordsMismatch": "Passwörter stimmen nicht überein",
+      "registrationError": "Registrierungsfehler",
+      "loginError": "Anmeldefehler",
+      "googleError": "Google-Fehler",
+      "invalidServerResponse": "Ungültige Server-Antwort",
+      "somethingWentWrong": "Etwas ist schiefgelaufen",
+      "googlePlayUnavailable": "Google Play-Dienste nicht verfügbar",
+      "failedToAuth": "Authentifizierung am Server fehlgeschlagen"
+    }
+  },
+  "main": {
+    "trendingTitle": "Trendwährungen",
+    "trending": "Trends",
+    "lastPrice": "Letzter Preis",
+    "change24h": "24h Änd.%",
+    "viewAll": "Alle anzeigen"
+  },
+  "totalBalance": {
+    "label": "Gesamtsaldo",
+    "topUp": "Aufladen",
+    "withdraw": "Auszahlen",
+    "pnlToday": "PnL heute: "
+  },
+  "wallet": {
+    "title": "Wallet",
+    "coin": "Münze",
+    "holdings": "Bestand",
+    "value": "Wert",
+    "noAssets": "Keine Vermögenswerte gefunden"
+  },
+  "allAssets": {
+    "title": "Alle Krypto-Assets"
+  },
+  "exchange": {
+    "currentPrice": "Aktueller Preis",
+    "yourBalance": "Ihr {{symbol}}: ",
+    "availableUsd": "Verfügbares USD: ",
+    "buy": "Kaufen",
+    "sell": "Verkaufen",
+    "get": "Erhalten:",
+    "spend": "Ausgeben:",
+    "price": "Preis:",
+    "receive": "Erhalten:",
+    "confirmPurchase": "Kauf bestätigen",
+    "confirmSale": "Verkauf bestätigen",
+    "confirmIn": "Bestätigen in ",
+    "boughtSuccess": "{{amount}} {{symbol}} erfolgreich gekauft ({{usd}} USD)",
+    "soldSuccess": "{{amount}} {{symbol}} erfolgreich verkauft ({{usd}} USD)",
+    "transactionFailed": "Transaktion fehlgeschlagen"
+  },
+  "payment": {
+    "title": "Wallet aufladen",
+    "selectMethod": "Zahlungsmethode auswählen",
+    "recommended": "Empfohlen",
+    "other": "Andere"
+  },
+  "topUp": {
+    "title": "Saldo aufladen",
+    "confirmTitle": "Aufladung bestätigen",
+    "confirmQuestion": "Möchten Sie wirklich Geld zu Ihrem Saldo hinzufügen?",
+    "invalidAmount": "Bitte einen gültigen Betrag eingeben",
+    "notAuthenticated": "Benutzer nicht authentifiziert",
+    "successMessage": "{{amount}} USD erfolgreich aufgeladen",
+    "failed": "Aufladung fehlgeschlagen"
+  },
+  "withdraw": {
+    "title": "USD auszahlen",
+    "amountLabel": "Auszahlungsbetrag ($)",
+    "available": "Verfügbar: ",
+    "infoText": "Das Geld wird sofort auf Ihre verknüpfte Bankkarte überwiesen.",
+    "button": "Auszahlen",
+    "insufficientFunds": "Unzureichendes Guthaben",
+    "withdrawnMessage": "{{amount}} USD auf Ihre Karte ausgezahlt",
+    "failed": "Auszahlung fehlgeschlagen"
+  },
+  "history": {
+    "title": "Verlauf",
+    "noTransactions": "Noch keine Transaktionen",
+    "topUp": "Aufladung",
+    "withdraw": "Auszahlung",
+    "buy": "Kauf {{currency}}",
+    "sell": "Verkauf {{currency}}",
+    "transaction": "Transaktion"
+  },
+  "trade": {
+    "buy": "Kaufen",
+    "sell": "Verkaufen",
+    "buySymbol": "{{symbol}} kaufen",
+    "sellSymbol": "{{symbol}} verkaufen",
+    "priceLabel": "Preis: ${{price}}",
+    "getLabel": "Erhalten:",
+    "sellLabel": "Verkaufen:"
+  },
+  "settings": {
+    "title": "Einstellungen",
+    "profile": "Profil",
+    "general": "Allgemein",
+    "language": "Sprache",
+    "logOut": "Abmelden",
+    "languageModal": {
+      "title": "Sprache wählen",
+      "english": "English",
+      "polish": "Polski",
+      "german": "Deutsch"
+    }
+  }
+}
