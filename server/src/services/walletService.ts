@@ -3,15 +3,14 @@ import { getTickerFromCache } from './priceCache';
 
 class WalletService {
     async topUp(userId: number, amount: number) {
-        const card = await prisma.bankCard.findUnique({ where: { userId } });
-        if (!card || card.balance < amount) {
-            throw new Error('INSUFFICIENT_CARD_FUNDS');
-        }
-
-        const wallet = await prisma.wallet.findUnique({ where: { userId } });
-        if (!wallet) throw new Error('WALLET_NOT_FOUND');
-
+        // Проверка баланса карты и перевод — внутри одной транзакции.
         return await prisma.$transaction(async (tx) => {
+            const card = await tx.bankCard.findUnique({ where: { userId } });
+            if (!card || card.balance < amount) throw new Error('INSUFFICIENT_CARD_FUNDS');
+
+            const wallet = await tx.wallet.findUnique({ where: { userId } });
+            if (!wallet) throw new Error('WALLET_NOT_FOUND');
+
             await tx.bankCard.update({ where: { userId }, data: { balance: { decrement: amount } } });
             await tx.wallet.update({ where: { id: wallet.id }, data: { balanceUsd: { increment: amount } } });
             return await tx.transaction.create({
@@ -21,13 +20,13 @@ class WalletService {
     }
 
     async withdraw(userId: number, amount: number) {
-        const wallet = await prisma.wallet.findUnique({ where: { userId } });
-        if (!wallet || wallet.balanceUsd < amount) throw new Error('INSUFFICIENT_WALLET_FUNDS');
-
-        const card = await prisma.bankCard.findUnique({ where: { userId } });
-        if (!card) throw new Error('CARD_NOT_FOUND');
-
         return await prisma.$transaction(async (tx) => {
+            const wallet = await tx.wallet.findUnique({ where: { userId } });
+            if (!wallet || wallet.balanceUsd < amount) throw new Error('INSUFFICIENT_WALLET_FUNDS');
+
+            const card = await tx.bankCard.findUnique({ where: { userId } });
+            if (!card) throw new Error('CARD_NOT_FOUND');
+
             await tx.wallet.update({ where: { id: wallet.id }, data: { balanceUsd: { decrement: amount } } });
             await tx.bankCard.update({ where: { userId }, data: { balance: { increment: amount } } });
             return await tx.transaction.create({
@@ -62,7 +61,7 @@ class WalletService {
 
             const currentValue = asset.balance * currentPrice;
             let previousValue = currentValue;
-            
+
             if (changePercent !== 0) {
                 previousValue = currentValue / (1 + (changePercent / 100));
             }
@@ -100,8 +99,8 @@ class WalletService {
         }
 
         const totalChangeValue = totalBalanceUsd - totalPreviousDayBalance;
-        const totalChangePercent = totalPreviousDayBalance !== 0 
-            ? (totalChangeValue / totalPreviousDayBalance) * 100 
+        const totalChangePercent = totalPreviousDayBalance !== 0
+            ? (totalChangeValue / totalPreviousDayBalance) * 100
             : 0;
 
         detailedAssets.sort((a, b) => b.value - a.value);

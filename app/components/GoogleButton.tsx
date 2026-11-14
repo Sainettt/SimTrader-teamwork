@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     marginTop: verticalScale(10),
     marginBottom: verticalScale(10),
     borderWidth: 1,
-    borderColor: '#e0e0e0',
+    borderColor: '#2C313B',
   },
   contentWrapper: {
     flexDirection: 'row',
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
   },
   text: {
-    color: '#1F1F1F',
+    color: '#0E1013',
     fontSize: moderateScale(16),
     fontWeight: '600',
     fontFamily: 'Poppins-Medium',

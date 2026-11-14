@@ -40,7 +40,9 @@
       "somethingWentWrong": "Something went wrong",
       "googlePlayUnavailable": "Google Play Services not available",
       "failedToAuth": "Failed to authenticate with server"
-    }
+    },
+    "welcomeBack": "Welcome back",
+    "createAccount": "Create your account"
   },
   "main": {
     "trendingTitle": "Trending currencies",

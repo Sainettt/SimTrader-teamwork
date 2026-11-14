@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     activeIntervalButton: {
-        backgroundColor: '#3C3C3C',
+        backgroundColor: '#0E1013',
     },
     intervalText: {
         color: '#777',

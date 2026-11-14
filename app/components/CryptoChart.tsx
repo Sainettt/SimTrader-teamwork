@@ -36,9 +36,9 @@ export const CryptoChart: React.FC<Props> = ({ data, loading, isPositive, width 
                         withHorizontalLabels={false}
                         withShadow={false}
                         chartConfig={{
-                            backgroundColor: "#3C3C3C",
-                            backgroundGradientFrom: "#3C3C3C",
-                            backgroundGradientTo: "#3C3C3C",
+                            backgroundColor: "#0E1013",
+                            backgroundGradientFrom: "#0E1013",
+                            backgroundGradientTo: "#0E1013",
                             decimalPlaces: 2,
                             
                             fillShadowGradientFrom: "transparent",

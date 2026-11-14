@@ -14,7 +14,7 @@ export const CustomAlert: React.FC<CustomAlertProps> = ({ visible, title, messag
     <Modal transparent visible={visible} animationType="fade">
       <View style={styles.overlay}>
         <View style={styles.alertBox}>
-          <Text style={[styles.title, { color: type === 'success' ? '#83EDA6' : '#FF6B6B' }]}>
+          <Text style={[styles.title, { color: type === 'success' ? '#83EDA6' : '#EB5B5B' }]}>
             {title}
           </Text>
           <Text style={styles.message}>{message}</Text>
@@ -36,12 +36,12 @@ const styles = StyleSheet.create({
   },
   alertBox: {
     width: 300,
-    backgroundColor: '#1E1E1E',
+    backgroundColor: '#191C22',
     borderRadius: 15,
     padding: 20,
     alignItems: 'center',
     borderWidth: 1,
-    borderColor: '#333',
+    borderColor: '#232730',
   },
   title: {
     fontFamily: 'Poppins-Bold',
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   button: {
-    backgroundColor: '#333',
+    backgroundColor: '#232730',
     paddingVertical: 10,
     paddingHorizontal: 30,
     borderRadius: 8,

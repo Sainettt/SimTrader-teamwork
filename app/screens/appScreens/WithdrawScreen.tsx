@@ -190,7 +190,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Poppins-Bold',
     },
     input: {
-        backgroundColor: '#4A4A4A',
+        backgroundColor: '#232730',
         borderRadius: moderateScale(10),
         color: '#FFFFFF',
         fontSize: moderateScale(18),

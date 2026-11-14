@@ -1,6 +1,6 @@
 import axios, { AxiosError, InternalAxiosRequestConfig } from 'axios';
 
-const API_URL = 'http://vps-29a0acba.vps.ovh.net:4000/api';
+const API_URL = 'http://10.0.2.2:4000/api';
 
 let authToken: string | null = null;
 

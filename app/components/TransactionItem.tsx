@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
     paddingVertical: verticalScale(12),
     paddingHorizontal: scale(10),
     borderBottomWidth: 1,
-    borderBottomColor: '#4A4A4A',
+    borderBottomColor: '#232730',
   },
   left: {
     flexDirection: 'column',

@@ -141,7 +141,7 @@ export const TradePanel: React.FC<TradePanelProps> = ({
                 disabled={isLoading}
             >
                 {isLoading ? (
-                    <ActivityIndicator color="#1E1E1E" />
+                    <ActivityIndicator color="#191C22" />
                 ) : (
                     <Text style={styles.actionButtonText}>
                         {isBuy ? t('trade.buySymbol', { symbol }) : t('trade.sellSymbol', { symbol })}
@@ -217,7 +217,7 @@ export const TradePanel: React.FC<TradePanelProps> = ({
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#1E1E1E',
+        backgroundColor: '#191C22',
         borderTopLeftRadius: 20,
         borderTopRightRadius: 20,
         padding: 15, 
@@ -225,7 +225,7 @@ const styles = StyleSheet.create({
     },
     switchContainer: {
         flexDirection: 'row',
-        backgroundColor: '#3C3C3C',
+        backgroundColor: '#0E1013',
         borderRadius: 10,
         padding: 3, 
         marginBottom: 15, 
@@ -239,18 +239,18 @@ const styles = StyleSheet.create({
     activeBuyButton: { backgroundColor: '#83EDA6' },
     activeSellButton: { backgroundColor: '#EB5B5B' },
     switchText: { fontFamily: 'Poppins-Bold', color: '#777', fontSize: 14 },
-    activeText: { color: '#1E1E1E' },
+    activeText: { color: '#191C22' },
     inputContainer: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        backgroundColor: '#3C3C3C',
+        backgroundColor: '#0E1013',
         borderRadius: 10,
         paddingHorizontal: 15,
         height: 50,
         marginBottom: 10,
         borderWidth: 1,
-        borderColor: '#555'
+        borderColor: '#2C313B'
     },
     input: { 
         flex: 1, 
@@ -276,25 +276,25 @@ const styles = StyleSheet.create({
         justifyContent: 'center', 
         alignItems: 'center' 
     },
-    actionButtonText: { fontSize: 16, fontFamily: 'Poppins-Bold', color: '#1E1E1E' },
+    actionButtonText: { fontSize: 16, fontFamily: 'Poppins-Bold', color: '#191C22' },
     cryptoAmountText: {color:'#fff', fontWeight: 'bold'},
 
     modalOverlay: { flex: 1, backgroundColor: 'rgba(0, 0, 0, 0.7)', justifyContent: 'center', alignItems: 'center' },
-    modalContainer: { width: '85%', backgroundColor: '#3C3C3C', borderRadius: 20, padding: 20, alignItems: 'center', borderWidth: 1, borderColor: '#454545', elevation: 5 },
+    modalContainer: { width: '85%', backgroundColor: '#0E1013', borderRadius: 20, padding: 20, alignItems: 'center', borderWidth: 1, borderColor: '#2C313B', elevation: 5 },
     modalTitle: { fontSize: 20, fontFamily: 'Poppins-Bold', color: '#FFFFFF', marginBottom: 5 },
     modalText: { fontSize: 14, fontFamily: 'Poppins-Regular', color: '#AAAAAA', textAlign: 'center', marginBottom: 15 },
-    summaryContainer: { width: '100%', backgroundColor: '#2C2C2C', borderRadius: 12, padding: 12, marginBottom: 15 },
+    summaryContainer: { width: '100%', backgroundColor: '#121418', borderRadius: 12, padding: 12, marginBottom: 15 },
     summaryRow: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 6, alignItems: 'center' },
     summaryLabel: { color: '#AAAAAA', fontFamily: 'Poppins-Regular', fontSize: 14 },
     summaryValue: { color: '#FFFFFF', fontFamily: 'Poppins-Bold', fontSize: 14 },
-    divider: { height: 1, backgroundColor: '#444', marginVertical: 8 },
+    divider: { height: 1, backgroundColor: '#2C313B', marginVertical: 8 },
     modalButtonsRow: { flexDirection: 'row', justifyContent: 'space-between', width: '100%' },
     modalButton: { borderRadius: 12, paddingVertical: 10, width: '47%', alignItems: 'center' },
-    modalButtonCancel: { backgroundColor: '#636363' },
+    modalButtonCancel: { backgroundColor: '#191C22' },
     modalButtonConfirmBuy: { backgroundColor: '#83EDA6' },
     modalButtonConfirmSell: { backgroundColor: '#EB5B5B' },
     modalButtonTextCancel: { color: '#FFFFFF', fontFamily: 'Poppins-Bold', fontSize: 14 },
-    modalButtonTextConfirm: { color: '#333333', fontFamily: 'Poppins-Bold', fontSize: 14 },
+    modalButtonTextConfirm: { color: '#232730', fontFamily: 'Poppins-Bold', fontSize: 14 },
     modalConfirmText: {color: '#EB5B5B', fontWeight: 'bold'},
     modalCryptoAmountText: {color: '#83EDA6', fontSize: 18},
 });

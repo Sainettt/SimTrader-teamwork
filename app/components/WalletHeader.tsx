@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     marginBottom: verticalScale(5),
     marginTop: verticalScale(20),
     borderBottomWidth: 1,
-    borderBottomColor: '#4A4A4A',
+    borderBottomColor: '#232730',
   },
   leftSide: {
     flex: 1,

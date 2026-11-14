@@ -15,7 +15,7 @@ type BottomBarProps = {
 }
 
 const ICON_SIZE = moderateScale(32);
-const ICON_COLOR = '#3C3C3C';
+const ICON_COLOR = '#AAB2BF';
 
 const BottomBar: React.FC<BottomBarProps> = ({ homePress, walletPress, transactionPress, settingsPress }) => {
     const insets = useSafeAreaInsets();

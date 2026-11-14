@@ -1,87 +1,93 @@
 import { StyleSheet } from 'react-native'
 import { scale, verticalScale, moderateScale } from '../utils/responsive'
+import { colors, radius, font } from '../src/theme/theme'
 
 export const authStyles = StyleSheet.create({
-    appContainer:{
-        flex: 1
+    appContainer: {
+        flex: 1,
+        backgroundColor: colors.bg,
     },
     container: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#3C3C3C'
+        backgroundColor: colors.bg,
+        paddingHorizontal: scale(24),
     },
     authContainer: {
         width: '100%',
         alignItems: 'center',
     },
-
     containerFields: {
+        width: '100%',
         justifyContent: 'center',
-        alignItems: 'flex-start',
+        alignItems: 'stretch',
+        maxWidth: scale(320),
     },
     fields: {
-        width: scale(300),
-        height: verticalScale(45),
-        backgroundColor: '#E5E5E5',
-        borderColor: '#9A9A9A',
+        width: '100%',
+        height: verticalScale(52),
+        backgroundColor: colors.surface,
+        borderColor: colors.border,
         borderWidth: 1,
-        marginBottom: verticalScale(10),
-        borderRadius: moderateScale(15),
-        paddingLeft: scale(10)
+        color: colors.text,
+        fontFamily: font.regular,
+        fontSize: moderateScale(15),
+        marginBottom: verticalScale(14),
+        borderRadius: radius.md,
+        paddingHorizontal: scale(16),
     },
     fieldsName: {
-        fontSize: moderateScale(16),
-        fontFamily: 'Poppins-Light',
-        color: '#E5E5E5',
-        marginStart: scale(5)
+        fontSize: moderateScale(13),
+        fontFamily: font.medium,
+        color: colors.textSecondary,
+        marginStart: scale(4),
+        marginBottom: verticalScale(6),
     },
     authSubmitButton: {
-        width: scale(220),
-        height: verticalScale(50),
-        marginTop: verticalScale(20),
+        width: scale(300),
+        maxWidth: '100%',
+        height: verticalScale(54),
+        marginTop: verticalScale(8),
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#E5E5E5',
-        borderWidth: 1,
-        borderColor: '#9A9A9A',
-        borderRadius: moderateScale(15),
+        backgroundColor: colors.primary,
+        borderRadius: radius.md,
     },
     authSubmitButtonText: {
-        fontSize: moderateScale(24),
-        fontFamily: 'Poppins-Bold',
-        color: '#535353'
+        fontSize: moderateScale(18),
+        fontFamily: font.bold,
+        color: colors.primaryText,
     },
     separatorContainer: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginVertical: verticalScale(20),
+        marginVertical: verticalScale(22),
         width: '90%',
     },
     separatorLine: {
         flex: 1,
         height: 1,
-        backgroundColor: '#E0E0E0',
+        backgroundColor: colors.border,
     },
     separatorText: {
-        marginHorizontal: scale(10),
-        color: '#888',
-        fontSize: moderateScale(14),
+        marginHorizontal: scale(12),
+        color: colors.textMuted,
+        fontFamily: font.medium,
+        fontSize: moderateScale(13),
     },
-    authAskTextContainer:{
+    authAskTextContainer: {
         flexDirection: 'row',
-        marginTop: verticalScale(10)
+        marginTop: verticalScale(18),
     },
-
-    mainAskText:{
+    mainAskText: {
         fontSize: moderateScale(13),
-        fontFamily: 'Poppins-Light',
-        color: '#9A9A9A'
+        fontFamily: font.regular,
+        color: colors.textMuted,
     },
-    buttonAskText:{
+    buttonAskText: {
         fontSize: moderateScale(13),
-        fontFamily: 'Poppins-Regular',
-        color: '#E5E5E5'
-    }
+        fontFamily: font.bold,
+        color: colors.primary,
+    },
 })
-

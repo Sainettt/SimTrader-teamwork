@@ -3,6 +3,7 @@ import { View, Text, TextInput } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import LoginFields from './LogInFields';
 import { authStyles } from '../styles/authStyles';
+import { colors } from '../src/theme/theme';
 
 type RegisterFieldsProps = {
     username: string;
@@ -27,7 +28,7 @@ const RegisterFields: React.FC<RegisterFieldsProps> = ({ username, setUsername, 
                 setPassword={setPassword}
             />
             <Text style={authStyles.fieldsName}>{t('auth.fields.confirmPassword')}</Text>
-            <TextInput style={authStyles.fields} placeholder={t('auth.fields.placeholderConfirmPassword')} secureTextEntry value={confirmPassword} onChangeText={setConfirmPassword} />
+            <TextInput style={authStyles.fields} placeholderTextColor={colors.textMuted} placeholder={t('auth.fields.placeholderConfirmPassword')} secureTextEntry value={confirmPassword} onChangeText={setConfirmPassword} />
         </View>
     )
 }

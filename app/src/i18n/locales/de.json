@@ -40,7 +40,9 @@
       "somethingWentWrong": "Etwas ist schiefgelaufen",
       "googlePlayUnavailable": "Google Play-Dienste nicht verfügbar",
       "failedToAuth": "Authentifizierung am Server fehlgeschlagen"
-    }
+    },
+    "welcomeBack": "Willkommen zurück",
+    "createAccount": "Konto erstellen"
   },
   "main": {
     "trendingTitle": "Trendwährungen",

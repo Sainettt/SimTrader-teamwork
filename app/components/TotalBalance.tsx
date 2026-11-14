@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     withdrawButton: {
-        backgroundColor: '#4A4A4A',
+        backgroundColor: '#232730',
     },
     buttonText: {
         fontSize: moderateScale(13),

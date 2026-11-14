@@ -40,7 +40,9 @@
       "somethingWentWrong": "Coś poszło nie tak",
       "googlePlayUnavailable": "Usługi Google Play niedostępne",
       "failedToAuth": "Nie udało się zalogować do serwera"
-    }
+    },
+    "welcomeBack": "Witaj ponownie",
+    "createAccount": "Utwórz konto"
   },
   "main": {
     "trendingTitle": "Popularne waluty",

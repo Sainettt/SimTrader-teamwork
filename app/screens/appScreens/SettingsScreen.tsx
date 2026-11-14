@@ -137,7 +137,7 @@ const SettingsScreen = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#3C3C3C',
+        backgroundColor: '#0E1013',
     },
     header: {
         flexDirection: 'row',
@@ -171,7 +171,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Poppins-SemiBold',
     },
     card: {
-        backgroundColor: '#636363',
+        backgroundColor: '#191C22',
         borderRadius: moderateScale(12),
         padding: moderateScale(15),
         elevation: 5,
@@ -190,7 +190,7 @@ const styles = StyleSheet.create({
         marginRight: scale(15),
     },
     avatarText: {
-        color: '#3C3C3C',
+        color: '#0E1013',
         fontSize: moderateScale(22),
         fontFamily: 'Poppins-Bold',
     },
@@ -212,7 +212,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        backgroundColor: '#636363',
+        backgroundColor: '#191C22',
         padding: moderateScale(14),
         marginBottom: verticalScale(8),
         borderRadius: moderateScale(12),
@@ -261,11 +261,11 @@ const styles = StyleSheet.create({
     },
     modalContent: {
         width: '100%',
-        backgroundColor: '#3C3C3C',
+        backgroundColor: '#0E1013',
         borderRadius: moderateScale(16),
         padding: moderateScale(20),
         borderWidth: 1,
-        borderColor: '#555',
+        borderColor: '#2C313B',
     },
     modalTitle: {
         fontSize: moderateScale(18),
@@ -281,7 +281,7 @@ const styles = StyleSheet.create({
         paddingVertical: verticalScale(14),
         paddingHorizontal: scale(12),
         borderRadius: moderateScale(10),
-        backgroundColor: '#4A4A4A',
+        backgroundColor: '#232730',
         marginBottom: verticalScale(8),
     },
     languageOptionSelected: {

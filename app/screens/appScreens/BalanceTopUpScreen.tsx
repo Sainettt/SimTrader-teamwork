@@ -162,7 +162,7 @@ const BalanceTopUpScreen: React.FC<BalanceTopUpScreenProps> = ({
                 onChangeText={handleUsdChange}
                 keyboardType="decimal-pad"
                 placeholder="0"
-                placeholderTextColor="#555"
+                placeholderTextColor="#2C313B"
               />
               <View style={appStyles.currencyBadge}>
                 <Text style={appStyles.currencyText}>USD</Text>
@@ -177,7 +177,7 @@ const BalanceTopUpScreen: React.FC<BalanceTopUpScreenProps> = ({
                   onChangeText={handlePlnChange}
                   keyboardType="decimal-pad"
                   placeholder="0"
-                  placeholderTextColor="#555"
+                  placeholderTextColor="#2C313B"
                 />
               ) : (
                 <ActivityIndicator
@@ -296,7 +296,7 @@ const localStyles = StyleSheet.create({
   inputTextSecondary: {
     fontSize: moderateScale(40),
     fontFamily: 'Poppins-Bold',
-    color: '#636363',
+    color: '#6B7280',
     textAlign: 'right',
     minWidth: scale(80),
     marginRight: scale(15),
@@ -307,7 +307,7 @@ const localStyles = StyleSheet.create({
   continueButtonText: {
     fontFamily: 'Poppins-Bold',
     fontSize: moderateScale(18),
-    color: '#333',
+    color: '#232730',
   },
 
   modalOverlay: {
@@ -318,12 +318,12 @@ const localStyles = StyleSheet.create({
   },
   modalContainer: {
     width: '85%',
-    backgroundColor: '#3C3C3C',
+    backgroundColor: '#0E1013',
     borderRadius: moderateScale(20),
     padding: moderateScale(25),
     alignItems: 'center',
 
-    shadowColor: '#111',
+    shadowColor: '#0A0B0D',
     shadowOffset: {
       width: 0,
       height: 1,
@@ -332,7 +332,7 @@ const localStyles = StyleSheet.create({
     shadowRadius: moderateScale(4),
     elevation: 5,
     borderWidth: 1,
-    borderColor: '#454545',
+    borderColor: '#2C313B',
   },
   modalTitle: {
     fontSize: moderateScale(22),
@@ -365,7 +365,7 @@ const localStyles = StyleSheet.create({
     alignItems: 'center',
   },
   modalButtonCancel: {
-    backgroundColor: '#636363',
+    backgroundColor: '#191C22',
   },
   modalButtonConfirm: {
     backgroundColor: '#83EDA6',
@@ -376,7 +376,7 @@ const localStyles = StyleSheet.create({
     fontSize: moderateScale(16),
   },
   modalButtonTextConfirm: {
-    color: '#333333',
+    color: '#232730',
     fontFamily: 'Poppins-Bold',
     fontSize: moderateScale(16),
   },
