@@ -24,6 +24,8 @@ jobs:
         run: cd server && npx prisma generate
       - name: Type Check
         run: cd server && npm run type-check
+      - name: Test
+        run: cd server && npm test
 
   app-check:
     runs-on: ubuntu-latest

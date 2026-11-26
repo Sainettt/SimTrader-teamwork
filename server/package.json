@@ -8,6 +8,7 @@
     "build": "tsc",
     "lint": "eslint src/**/*.ts",
     "type-check": "tsc --noEmit",
+    "test": "node --require ts-node/register --test \"src/__tests__/*.test.ts\"",
     "start:prod": "npm run build && node dist/index.js"
   },
   "keywords": [],
