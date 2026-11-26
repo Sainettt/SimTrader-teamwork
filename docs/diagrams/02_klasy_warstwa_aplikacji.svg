@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="887" viewBox="0 0 1200 887" font-family="Liberation Sans, Arial, DejaVu Sans, sans-serif" font-size="13" fill="#1f2937">
+<defs><marker id="open" markerWidth="12" markerHeight="10" refX="10" refY="5" orient="auto"><path d="M1,1 L10,5 L1,9" fill="none" stroke="#374151" stroke-width="1.3"/></marker><marker id="solid" markerWidth="12" markerHeight="10" refX="10" refY="5" orient="auto"><path d="M1,1 L10,5 L1,9 Z" fill="#374151" stroke="#374151"/></marker></defs>
+<rect width="1200" height="887" fill="#ffffff"/>
+<text x="12" y="24" font-size="13" text-anchor="start" font-weight="bold" font-style="normal" fill="#1d4ed8">Warstwa kontrolerów (obsługa żądań HTTP)</text>
+<rect x="12" y="36" width="276" height="130" fill="#ffffff" stroke="#374151" stroke-width="1.3"/>
+<rect x="12" y="36" width="276" height="32" fill="#dbeafe" stroke="#374151" stroke-width="1.3"/>
+<text x="150.0" y="57" font-size="14" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1f2937">AuthController</text>
+<line x1="12" y1="78" x2="288" y2="78" stroke="#374151" stroke-width="1.3"/>
+<text x="21" y="97" font-size="12.5" text-anchor="start" font-weight="normal" font-style="normal" fill="#1f2937">+ registration(req, res)</text>
+<text x="21" y="116" font-size="12.5" text-anchor="start" font-weight="normal" font-style="normal" fill="#1f2937">+ login(req, res)</text>
+<text x="21" y="135" font-size="12.5" text-anchor="start" font-weight="normal" font-style="normal" fill="#1f2937">+ googleLogin(req, res)</text>
+<text x="21" y="154" font-size="12.5" text-anchor="start" font-weight="normal" font-style="normal" fill="#1f2937">+ check(req, res)</text>
+<rect x="312" y="36" width="276" height="111" fill="#ffffff" stroke="#374151" stroke-width="1.3"/>
+<rect x="312" y="36" width="276" height="32" fill="#dbeafe" stroke="#374151" stroke-width="1.3"/>
+<text x="450.0" y="57" font-size="14" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1f2937">CurrencyController</text>
+<line x1="312" y1="78" x2="588" y2="78" stroke="#374151" stroke-width="1.3"/>
+<text x="321" y="97" font-size="12.5" text-anchor="start" font-weight="normal" font-style="normal" fill="#1f2937">+ getTopCryptos(req, res)</text>
+<text x="321" y="116" font-size="12.5" text-anchor="start" font-weight="normal" font-style="normal" fill="#1f2937">+ getHistory(req, res)</text>
+<text x="321" y="135" font-size="12.5" text-anchor="start" font-weight="normal" font-style="normal" fill="#1f2937">+ getRate(req, res)</text>
+<rect x="612" y="36" width="276" height="130" fill="#ffffff" stroke="#374151" stroke-width="1.3"/>
+<rect x="612" y="36" width="276" height="32" fill="#dbeafe" stroke="#374151" stroke-width="1.3"/>
+<text x="750.0" y="57" font-size="14" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1f2937">WalletController</text>
+<line x1="612" y1="78" x2="888" y2="78" stroke="#374151" stroke-width="1.3"/>
+<text x="621" y="97" font-size="12.5" text-anchor="start" font-weight="normal" font-style="normal" fill="#1f2937">+ topUpWallet(req, res)</text>
+<text x="621" y="116" font-size="12.5" text-anchor="start" font-weight="normal" font-style="normal" fill="#1f2937">+ getPortfolio(req, res)</text>
+<text x="621" y="135" font-size="12.5" text-anchor="start" font-weight="normal" font-style="normal" fill="#1f2937">+ getTransactions(req, res)</text>
+<text x="621" y="154" font-size="12.5" text-anchor="start" font-weight="normal" font-style="normal" fill="#1f2937">+ withdraw(req, res)</text>
+<rect x="912" y="36" width="276" height="92" fill="#ffffff" stroke="#374151" stroke-width="1.3"/>
+<rect x="912" y="36" width="276" height="32" fill="#dbeafe" stroke="#374151" stroke-width="1.3"/>
+<text x="1050.0" y="57" font-size="14" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1f2937">TradeController</text>
+<line x1="912" y1="78" x2="1188" y2="78" stroke="#374151" stroke-width="1.3"/>
+<text x="921" y="97" font-size="12.5" text-anchor="start" font-weight="normal" font-style="normal" fill="#1f2937">+ buy(req, res)</text>
+<text x="921" y="116" font-size="12.5" text-anchor="start" font-weight="normal" font-style="normal" fill="#1f2937">+ sell(req, res)</text>
+<text x="165" y="208" font-size="13" text-anchor="start" font-weight="bold" font-style="normal" fill="#1d4ed8">Warstwa serwisów (logika biznesowa)</text>
+<path d="M150.0,166 L150.0,236" fill="none" stroke="#374151" stroke-width="1.3" stroke-dasharray="6,4" marker-end="url(#open)"/>
+<path d="M450.0,147 L450.0,236" fill="none" stroke="#374151" stroke-width="1.3" stroke-dasharray="6,4" marker-end="url(#open)"/>
+<path d="M750.0,166 L750.0,236" fill="none" stroke="#374151" stroke-width="1.3" stroke-dasharray="6,4" marker-end="url(#open)"/>
+<path d="M1050.0,128 L1050.0,236" fill="none" stroke="#374151" stroke-width="1.3" stroke-dasharray="6,4" marker-end="url(#open)"/>
+<rect x="12" y="236" width="276" height="149" fill="#ffffff" stroke="#374151" stroke-width="1.3"/>
+<rect x="12" y="236" width="276" height="32" fill="#dbeafe" stroke="#374151" stroke-width="1.3"/>
+<text x="150.0" y="257" font-size="14" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1f2937">AuthService</text>
+<line x1="12" y1="278" x2="288" y2="278" stroke="#374151" stroke-width="1.3"/>
+<text x="21" y="297" font-size="12.5" text-anchor="start" font-weight="normal" font-style="normal" fill="#1f2937">+ generateJwt(id, email, ...): string</text>
+<text x="21" y="316" font-size="12.5" text-anchor="start" font-weight="normal" font-style="normal" fill="#1f2937">+ findUserByEmail(email): User</text>
+<text x="21" y="335" font-size="12.5" text-anchor="start" font-weight="normal" font-style="normal" fill="#1f2937">+ findUserById(id): User</text>
+<text x="21" y="354" font-size="12.5" text-anchor="start" font-weight="normal" font-style="normal" fill="#1f2937">+ createUserWithDetails(...): User</text>
+<text x="21" y="373" font-size="12.5" text-anchor="start" font-weight="normal" font-style="normal" fill="#1f2937">+ ensureWalletAndCard(user): string</text>
+<rect x="312" y="236" width="276" height="111" fill="#ffffff" stroke="#374151" stroke-width="1.3"/>
+<rect x="312" y="236" width="276" height="32" fill="#dbeafe" stroke="#374151" stroke-width="1.3"/>
+<text x="450.0" y="257" font-size="14" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1f2937">CurrencyService</text>
+<line x1="312" y1="278" x2="588" y2="278" stroke="#374151" stroke-width="1.3"/>
+<text x="321" y="297" font-size="12.5" text-anchor="start" font-weight="normal" font-style="normal" fill="#1f2937">+ getTopCoins(limit): CoinData[]</text>
+<text x="321" y="316" font-size="12.5" text-anchor="start" font-weight="normal" font-style="normal" fill="#1f2937">+ getPrice(symbol): SymbolPrice</text>
+<text x="321" y="335" font-size="12.5" text-anchor="start" font-weight="normal" font-style="normal" fill="#1f2937">+ getHistoryData(symbol, period)</text>
+<rect x="612" y="236" width="276" height="130" fill="#ffffff" stroke="#374151" stroke-width="1.3"/>
+<rect x="612" y="236" width="276" height="32" fill="#dbeafe" stroke="#374151" stroke-width="1.3"/>
+<text x="750.0" y="257" font-size="14" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1f2937">WalletService</text>
+<line x1="612" y1="278" x2="888" y2="278" stroke="#374151" stroke-width="1.3"/>
+<text x="621" y="297" font-size="12.5" text-anchor="start" font-weight="normal" font-style="normal" fill="#1f2937">+ topUp(userId, amount)</text>
+<text x="621" y="316" font-size="12.5" text-anchor="start" font-weight="normal" font-style="normal" fill="#1f2937">+ withdraw(userId, amount)</text>
+<text x="621" y="335" font-size="12.5" text-anchor="start" font-weight="normal" font-style="normal" fill="#1f2937">+ calculatePortfolio(userId)</text>
+<text x="621" y="354" font-size="12.5" text-anchor="start" font-weight="normal" font-style="normal" fill="#1f2937">+ getUserTransactions(userId)</text>
+<rect x="912" y="236" width="276" height="111" fill="#ffffff" stroke="#374151" stroke-width="1.3"/>
+<rect x="912" y="236" width="276" height="32" fill="#dbeafe" stroke="#374151" stroke-width="1.3"/>
+<text x="1050.0" y="257" font-size="14" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1f2937">TradeService</text>
+<line x1="912" y1="278" x2="1188" y2="278" stroke="#374151" stroke-width="1.3"/>
+<text x="921" y="297" font-size="12.5" text-anchor="start" font-weight="normal" font-style="normal" fill="#1f2937">- resolvePrice(currency): number</text>
+<text x="921" y="316" font-size="12.5" text-anchor="start" font-weight="normal" font-style="normal" fill="#1f2937">+ executeBuy(userId, cur, amount)</text>
+<text x="921" y="335" font-size="12.5" text-anchor="start" font-weight="normal" font-style="normal" fill="#1f2937">+ executeSell(userId, cur, amount)</text>
+<text x="114" y="471" font-size="13" text-anchor="start" font-weight="bold" font-style="normal" fill="#1d4ed8">Infrastruktura</text>
+<rect x="12" y="485" width="276" height="127" fill="#ffffff" stroke="#374151" stroke-width="1.3"/>
+<rect x="12" y="485" width="276" height="46" fill="#dbeafe" stroke="#374151" stroke-width="1.3"/>
+<text x="150.0" y="502" font-size="12" text-anchor="middle" font-weight="normal" font-style="italic" fill="#1f2937">«ORM»</text>
+<text x="150.0" y="521" font-size="14" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1f2937">PrismaClient</text>
+<text x="21" y="550" font-size="12.5" text-anchor="start" font-weight="normal" font-style="normal" fill="#1f2937">+ user, wallet, asset</text>
+<text x="21" y="569" font-size="12.5" text-anchor="start" font-weight="normal" font-style="normal" fill="#1f2937">+ transaction, bankCard</text>
+<line x1="12" y1="581" x2="288" y2="581" stroke="#374151" stroke-width="1.3"/>
+<text x="21" y="600" font-size="12.5" text-anchor="start" font-weight="normal" font-style="normal" fill="#1f2937">+ $transaction(fn): Promise</text>
+<rect x="462" y="485" width="330" height="165" fill="#ffffff" stroke="#374151" stroke-width="1.3"/>
+<rect x="462" y="485" width="330" height="46" fill="#dbeafe" stroke="#374151" stroke-width="1.3"/>
+<text x="627.0" y="502" font-size="12" text-anchor="middle" font-weight="normal" font-style="italic" fill="#1f2937">«moduł»</text>
+<text x="627.0" y="521" font-size="14" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1f2937">PriceCache</text>
+<text x="471" y="550" font-size="12.5" text-anchor="start" font-weight="normal" font-style="normal" fill="#1f2937">+ priceCache: Record&lt;string, TickerData&gt;</text>
+<text x="471" y="569" font-size="12.5" text-anchor="start" font-weight="normal" font-style="normal" fill="#1f2937">+ sortedMarketCache: CoinData[]</text>
+<line x1="462" y1="581" x2="792" y2="581" stroke="#374151" stroke-width="1.3"/>
+<text x="471" y="600" font-size="12.5" text-anchor="start" font-weight="normal" font-style="normal" fill="#1f2937">+ startPriceUpdater(): void  (cron co 5 s)</text>
+<text x="471" y="619" font-size="12.5" text-anchor="start" font-weight="normal" font-style="normal" fill="#1f2937">+ getTickerFromCache(symbol): TickerData</text>
+<text x="471" y="638" font-size="12.5" text-anchor="start" font-weight="normal" font-style="normal" fill="#1f2937">+ getTopCoinsFromCache(limit): CoinData[]</text>
+<rect x="912" y="485" width="276" height="87" fill="#ffffff" stroke="#374151" stroke-width="1.3"/>
+<rect x="912" y="485" width="276" height="46" fill="#dbeafe" stroke="#374151" stroke-width="1.3"/>
+<text x="1050.0" y="502" font-size="12" text-anchor="middle" font-weight="normal" font-style="italic" fill="#1f2937">«middleware»</text>
+<text x="1050.0" y="521" font-size="14" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1f2937">AuthMiddleware</text>
+<line x1="912" y1="541" x2="1188" y2="541" stroke="#374151" stroke-width="1.3"/>
+<text x="921" y="560" font-size="12.5" text-anchor="start" font-weight="normal" font-style="normal" fill="#1f2937">+ authMiddleware(req, res, next)</text>
+<text x="1050.0" y="592" font-size="12" text-anchor="middle" font-weight="normal" font-style="italic" fill="#1f2937">weryfikuje JWT dla tras</text>
+<text x="1050.0" y="609" font-size="12" text-anchor="middle" font-weight="normal" font-style="italic" fill="#1f2937">/currency, /wallet, /trade, /auth/check</text>
+<rect x="462" y="710" width="330" height="127" fill="#ffffff" stroke="#374151" stroke-width="1.3"/>
+<rect x="462" y="710" width="330" height="46" fill="#dbeafe" stroke="#374151" stroke-width="1.3"/>
+<text x="627.0" y="727" font-size="12" text-anchor="middle" font-weight="normal" font-style="italic" fill="#1f2937">«klient HTTP (axios)»</text>
+<text x="627.0" y="746" font-size="14" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1f2937">BinanceApi</text>
+<text x="471" y="775" font-size="12.5" text-anchor="start" font-weight="normal" font-style="normal" fill="#1f2937">+ baseURL = api.binance.com/api/v3</text>
+<text x="471" y="794" font-size="12.5" text-anchor="start" font-weight="normal" font-style="normal" fill="#1f2937">+ timeout = 5000 ms</text>
+<line x1="462" y1="806" x2="792" y2="806" stroke="#374151" stroke-width="1.3"/>
+<text x="471" y="825" font-size="12.5" text-anchor="start" font-weight="normal" font-style="normal" fill="#1f2937">+ get(/ticker/24hr | /ticker/price | /klines)</text>
+<path d="M100.0,385 L100.0,413" fill="none" stroke="#374151" stroke-width="1.3" stroke-dasharray="6,4"/>
+<path d="M700.0,366 L700.0,413" fill="none" stroke="#374151" stroke-width="1.3" stroke-dasharray="6,4"/>
+<path d="M1000.0,347 L1000.0,413" fill="none" stroke="#374151" stroke-width="1.3" stroke-dasharray="6,4"/>
+<path d="M1000.0,413 L100.0,413" fill="none" stroke="#374151" stroke-width="1.3" stroke-dasharray="6,4"/>
+<path d="M100.0,413 L100.0,485" fill="none" stroke="#374151" stroke-width="1.3" stroke-dasharray="6,4" marker-end="url(#open)"/>
+<path d="M500.0,347 L500.0,439" fill="none" stroke="#374151" stroke-width="1.3" stroke-dasharray="6,4"/>
+<path d="M800.0,366 L800.0,439" fill="none" stroke="#374151" stroke-width="1.3" stroke-dasharray="6,4"/>
+<path d="M1100.0,347 L1100.0,439" fill="none" stroke="#374151" stroke-width="1.3" stroke-dasharray="6,4"/>
+<path d="M500.0,439 L1100.0,439" fill="none" stroke="#374151" stroke-width="1.3" stroke-dasharray="6,4"/>
+<path d="M627.0,439 L627.0,485" fill="none" stroke="#374151" stroke-width="1.3" stroke-dasharray="6,4" marker-end="url(#open)"/>
+<path d="M627.0,650 L627.0,710" fill="none" stroke="#374151" stroke-width="1.3" stroke-dasharray="6,4" marker-end="url(#open)"/>
+<path d="M370.0,347 L370.0,773.5 L462,773.5" fill="none" stroke="#374151" stroke-width="1.3" stroke-dasharray="6,4" marker-end="url(#open)"/>
+<path d="M820,865 L880,865" fill="none" stroke="#374151" stroke-width="1.3" stroke-dasharray="6,4" marker-end="url(#open)"/>
+<text x="890" y="869" font-size="12" text-anchor="start" font-weight="normal" font-style="normal" fill="#1f2937">zależność («use»)</text>
+</svg>

@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="800" viewBox="0 0 1000 800" font-family="Liberation Sans, Arial, DejaVu Sans, sans-serif" font-size="13" fill="#1f2937">
+<defs><marker id="open" markerWidth="12" markerHeight="10" refX="10" refY="5" orient="auto"><path d="M1,1 L10,5 L1,9" fill="none" stroke="#374151" stroke-width="1.3"/></marker><marker id="solid" markerWidth="12" markerHeight="10" refX="10" refY="5" orient="auto"><path d="M1,1 L10,5 L1,9 Z" fill="#374151" stroke="#374151"/></marker></defs>
+<rect width="1000" height="800" fill="#ffffff"/>
+<rect x="270" y="30" width="460" height="740" fill="#f3f4f6" stroke="#374151" stroke-width="1.5" rx="6"/>
+<text x="500" y="56" font-size="16" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1f2937">System SimTrader</text>
+<path d="M125,395 L325,95" fill="none" stroke="#374151" stroke-width="1.3"/>
+<path d="M125,395 L325,152" fill="none" stroke="#374151" stroke-width="1.3"/>
+<path d="M125,395 L325,209" fill="none" stroke="#374151" stroke-width="1.3"/>
+<path d="M125,395 L325,266" fill="none" stroke="#374151" stroke-width="1.3"/>
+<path d="M125,395 L325,323" fill="none" stroke="#374151" stroke-width="1.3"/>
+<path d="M125,395 L325,380" fill="none" stroke="#374151" stroke-width="1.3"/>
+<path d="M125,395 L325,437" fill="none" stroke="#374151" stroke-width="1.3"/>
+<path d="M125,395 L325,494" fill="none" stroke="#374151" stroke-width="1.3"/>
+<path d="M125,395 L325,551" fill="none" stroke="#374151" stroke-width="1.3"/>
+<path d="M125,395 L325,608" fill="none" stroke="#374151" stroke-width="1.3"/>
+<path d="M125,395 L325,665" fill="none" stroke="#374151" stroke-width="1.3"/>
+<path d="M125,395 L325,722" fill="none" stroke="#374151" stroke-width="1.3"/>
+<path d="M675,266 L875,425" fill="none" stroke="#374151" stroke-width="1.3"/>
+<path d="M675,323 L875,425" fill="none" stroke="#374151" stroke-width="1.3"/>
+<path d="M675,494 L875,425" fill="none" stroke="#374151" stroke-width="1.3"/>
+<path d="M675,551 L875,425" fill="none" stroke="#374151" stroke-width="1.3"/>
+<path d="M675,608 L875,425" fill="none" stroke="#374151" stroke-width="1.3"/>
+<path d="M675,209 L875,145" fill="none" stroke="#374151" stroke-width="1.3"/>
+<ellipse cx="500" cy="95" rx="175" ry="23" fill="#fff" stroke="#1d4ed8" stroke-width="1.5"/>
+<text x="500" y="99.5" font-size="13" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1f2937">Rejestracja konta</text>
+<ellipse cx="500" cy="152" rx="175" ry="23" fill="#fff" stroke="#1d4ed8" stroke-width="1.5"/>
+<text x="500" y="156.5" font-size="13" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1f2937">Logowanie (e-mail i hasło)</text>
+<ellipse cx="500" cy="209" rx="175" ry="23" fill="#fff" stroke="#1d4ed8" stroke-width="1.5"/>
+<text x="500" y="213.5" font-size="13" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1f2937">Logowanie kontem Google</text>
+<ellipse cx="500" cy="266" rx="175" ry="23" fill="#fff" stroke="#1d4ed8" stroke-width="1.5"/>
+<text x="500" y="270.5" font-size="13" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1f2937">Przegląd aktualnych kursów</text>
+<ellipse cx="500" cy="323" rx="175" ry="23" fill="#fff" stroke="#1d4ed8" stroke-width="1.5"/>
+<text x="500" y="327.5" font-size="13" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1f2937">Przegląd kursów archiwalnych (wykres)</text>
+<ellipse cx="500" cy="380" rx="175" ry="23" fill="#fff" stroke="#1d4ed8" stroke-width="1.5"/>
+<text x="500" y="384.5" font-size="13" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1f2937">Zasilenie konta (symulowana karta)</text>
+<ellipse cx="500" cy="437" rx="175" ry="23" fill="#fff" stroke="#1d4ed8" stroke-width="1.5"/>
+<text x="500" y="441.5" font-size="13" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1f2937">Wypłata środków na kartę</text>
+<ellipse cx="500" cy="494" rx="175" ry="23" fill="#fff" stroke="#1d4ed8" stroke-width="1.5"/>
+<text x="500" y="498.5" font-size="13" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1f2937">Kupno waluty</text>
+<ellipse cx="500" cy="551" rx="175" ry="23" fill="#fff" stroke="#1d4ed8" stroke-width="1.5"/>
+<text x="500" y="555.5" font-size="13" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1f2937">Sprzedaż waluty</text>
+<ellipse cx="500" cy="608" rx="175" ry="23" fill="#fff" stroke="#1d4ed8" stroke-width="1.5"/>
+<text x="500" y="612.5" font-size="13" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1f2937">Podgląd portfela walutowego</text>
+<ellipse cx="500" cy="665" rx="175" ry="23" fill="#fff" stroke="#1d4ed8" stroke-width="1.5"/>
+<text x="500" y="669.5" font-size="13" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1f2937">Podgląd historii transakcji</text>
+<ellipse cx="500" cy="722" rx="175" ry="23" fill="#fff" stroke="#1d4ed8" stroke-width="1.5"/>
+<text x="500" y="726.5" font-size="13" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1f2937">Zmiana języka / wylogowanie</text>
+<circle cx="95" cy="362" r="13" fill="#fff" stroke="#374151" stroke-width="1.6"/>
+<path d="M95,375 L95,412" fill="none" stroke="#374151" stroke-width="1.6"/>
+<path d="M73,390 L117,390" fill="none" stroke="#374151" stroke-width="1.6"/>
+<path d="M95,412 L77,440" fill="none" stroke="#374151" stroke-width="1.6"/>
+<path d="M95,412 L113,440" fill="none" stroke="#374151" stroke-width="1.6"/>
+<text x="95" y="462" font-size="14" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1f2937">Użytkownik</text>
+<circle cx="905" cy="392" r="13" fill="#fff" stroke="#374151" stroke-width="1.6"/>
+<path d="M905,405 L905,442" fill="none" stroke="#374151" stroke-width="1.6"/>
+<path d="M883,420 L927,420" fill="none" stroke="#374151" stroke-width="1.6"/>
+<path d="M905,442 L887,470" fill="none" stroke="#374151" stroke-width="1.6"/>
+<path d="M905,442 L923,470" fill="none" stroke="#374151" stroke-width="1.6"/>
+<text x="905" y="492" font-size="14" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1f2937">Binance API</text>
+<text x="905" y="510" font-size="12" text-anchor="middle" font-weight="normal" font-style="italic" fill="#1f2937">«system zewnętrzny»</text>
+<circle cx="905" cy="112" r="13" fill="#fff" stroke="#374151" stroke-width="1.6"/>
+<path d="M905,125 L905,162" fill="none" stroke="#374151" stroke-width="1.6"/>
+<path d="M883,140 L927,140" fill="none" stroke="#374151" stroke-width="1.6"/>
+<path d="M905,162 L887,190" fill="none" stroke="#374151" stroke-width="1.6"/>
+<path d="M905,162 L923,190" fill="none" stroke="#374151" stroke-width="1.6"/>
+<text x="905" y="212" font-size="14" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1f2937">Google OAuth</text>
+<text x="905" y="230" font-size="12" text-anchor="middle" font-weight="normal" font-style="italic" fill="#1f2937">«system zewnętrzny»</text>
+</svg>

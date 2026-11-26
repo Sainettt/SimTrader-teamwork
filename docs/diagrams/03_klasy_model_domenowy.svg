@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1060" height="698" viewBox="0 0 1060 698" font-family="Liberation Sans, Arial, DejaVu Sans, sans-serif" font-size="13" fill="#1f2937">
+<defs><marker id="open" markerWidth="12" markerHeight="10" refX="10" refY="5" orient="auto"><path d="M1,1 L10,5 L1,9" fill="none" stroke="#374151" stroke-width="1.3"/></marker><marker id="solid" markerWidth="12" markerHeight="10" refX="10" refY="5" orient="auto"><path d="M1,1 L10,5 L1,9 Z" fill="#374151" stroke="#374151"/></marker></defs>
+<rect width="1060" height="698" fill="#ffffff"/>
+<rect x="20" y="30" width="280" height="158" fill="#ffffff" stroke="#374151" stroke-width="1.3"/>
+<rect x="20" y="30" width="280" height="32" fill="#dbeafe" stroke="#374151" stroke-width="1.3"/>
+<text x="160.0" y="51" font-size="14" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1f2937">BankCard</text>
+<text x="29" y="81" font-size="12.5" text-anchor="start" font-weight="normal" font-style="normal" fill="#1f2937">- id: number</text>
+<text x="29" y="100" font-size="12.5" text-anchor="start" font-weight="normal" font-style="normal" fill="#1f2937">- cardNumber: string</text>
+<text x="29" y="119" font-size="12.5" text-anchor="start" font-weight="normal" font-style="normal" fill="#1f2937">- balance: number = 10000</text>
+<text x="29" y="138" font-size="12.5" text-anchor="start" font-weight="normal" font-style="normal" fill="#1f2937">- cvv: string</text>
+<text x="29" y="157" font-size="12.5" text-anchor="start" font-weight="normal" font-style="normal" fill="#1f2937">- expiry: string</text>
+<text x="29" y="176" font-size="12.5" text-anchor="start" font-weight="normal" font-style="normal" fill="#1f2937">- userId: number</text>
+<line x1="20" y1="188" x2="300" y2="188" stroke="#374151" stroke-width="1.3"/>
+<rect x="390" y="30" width="280" height="139" fill="#ffffff" stroke="#374151" stroke-width="1.3"/>
+<rect x="390" y="30" width="280" height="32" fill="#dbeafe" stroke="#374151" stroke-width="1.3"/>
+<text x="530.0" y="51" font-size="14" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1f2937">User</text>
+<text x="399" y="81" font-size="12.5" text-anchor="start" font-weight="normal" font-style="normal" fill="#1f2937">- id: number</text>
+<text x="399" y="100" font-size="12.5" text-anchor="start" font-weight="normal" font-style="normal" fill="#1f2937">- username: string</text>
+<text x="399" y="119" font-size="12.5" text-anchor="start" font-weight="normal" font-style="normal" fill="#1f2937">- email: string  {unique}</text>
+<text x="399" y="138" font-size="12.5" text-anchor="start" font-weight="normal" font-style="normal" fill="#1f2937">- password: string  (hash bcrypt)</text>
+<text x="399" y="157" font-size="12.5" text-anchor="start" font-weight="normal" font-style="normal" fill="#1f2937">- createdAt: Date</text>
+<line x1="390" y1="169" x2="670" y2="169" stroke="#374151" stroke-width="1.3"/>
+<rect x="20" y="268" width="280" height="120" fill="#ffffff" stroke="#374151" stroke-width="1.3"/>
+<rect x="20" y="268" width="280" height="32" fill="#dbeafe" stroke="#374151" stroke-width="1.3"/>
+<text x="160.0" y="289" font-size="14" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1f2937">Asset</text>
+<text x="29" y="319" font-size="12.5" text-anchor="start" font-weight="normal" font-style="normal" fill="#1f2937">- id: number</text>
+<text x="29" y="338" font-size="12.5" text-anchor="start" font-weight="normal" font-style="normal" fill="#1f2937">- currency: string</text>
+<text x="29" y="357" font-size="12.5" text-anchor="start" font-weight="normal" font-style="normal" fill="#1f2937">- balance: number = 0</text>
+<text x="29" y="376" font-size="12.5" text-anchor="start" font-weight="normal" font-style="normal" fill="#1f2937">- walletId: number</text>
+<line x1="20" y1="388" x2="300" y2="388" stroke="#374151" stroke-width="1.3"/>
+<rect x="390" y="268" width="280" height="120" fill="#ffffff" stroke="#374151" stroke-width="1.3"/>
+<rect x="390" y="268" width="280" height="32" fill="#dbeafe" stroke="#374151" stroke-width="1.3"/>
+<text x="530.0" y="289" font-size="14" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1f2937">Wallet</text>
+<text x="399" y="319" font-size="12.5" text-anchor="start" font-weight="normal" font-style="normal" fill="#1f2937">- id: number</text>
+<text x="399" y="338" font-size="12.5" text-anchor="start" font-weight="normal" font-style="normal" fill="#1f2937">- balanceUsd: number = 0</text>
+<text x="399" y="357" font-size="12.5" text-anchor="start" font-weight="normal" font-style="normal" fill="#1f2937">- walletUid: string  {unique}</text>
+<text x="399" y="376" font-size="12.5" text-anchor="start" font-weight="normal" font-style="normal" fill="#1f2937">- userId: number  {unique}</text>
+<line x1="390" y1="388" x2="670" y2="388" stroke="#374151" stroke-width="1.3"/>
+<rect x="760" y="268" width="280" height="196" fill="#ffffff" stroke="#374151" stroke-width="1.3"/>
+<rect x="760" y="268" width="280" height="32" fill="#dbeafe" stroke="#374151" stroke-width="1.3"/>
+<text x="900.0" y="289" font-size="14" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1f2937">Transaction</text>
+<text x="769" y="319" font-size="12.5" text-anchor="start" font-weight="normal" font-style="normal" fill="#1f2937">- id: string  (UUID)</text>
+<text x="769" y="338" font-size="12.5" text-anchor="start" font-weight="normal" font-style="normal" fill="#1f2937">- type: TransactionType</text>
+<text x="769" y="357" font-size="12.5" text-anchor="start" font-weight="normal" font-style="normal" fill="#1f2937">- currency: string</text>
+<text x="769" y="376" font-size="12.5" text-anchor="start" font-weight="normal" font-style="normal" fill="#1f2937">- amount: number</text>
+<text x="769" y="395" font-size="12.5" text-anchor="start" font-weight="normal" font-style="normal" fill="#1f2937">- price: number  (kurs)</text>
+<text x="769" y="414" font-size="12.5" text-anchor="start" font-weight="normal" font-style="normal" fill="#1f2937">- totalUsd: number</text>
+<text x="769" y="433" font-size="12.5" text-anchor="start" font-weight="normal" font-style="normal" fill="#1f2937">- createdAt: Date</text>
+<text x="769" y="452" font-size="12.5" text-anchor="start" font-weight="normal" font-style="normal" fill="#1f2937">- walletId: number</text>
+<line x1="760" y1="464" x2="1040" y2="464" stroke="#374151" stroke-width="1.3"/>
+<rect x="760" y="534" width="280" height="134" fill="#ffffff" stroke="#374151" stroke-width="1.3"/>
+<rect x="760" y="534" width="280" height="46" fill="#dbeafe" stroke="#374151" stroke-width="1.3"/>
+<text x="900.0" y="551" font-size="12" text-anchor="middle" font-weight="normal" font-style="italic" fill="#1f2937">«enumeration»</text>
+<text x="900.0" y="570" font-size="14" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1f2937">TransactionType</text>
+<text x="769" y="599" font-size="12.5" text-anchor="start" font-weight="normal" font-style="normal" fill="#1f2937">BUY</text>
+<text x="769" y="618" font-size="12.5" text-anchor="start" font-weight="normal" font-style="normal" fill="#1f2937">SELL</text>
+<text x="769" y="637" font-size="12.5" text-anchor="start" font-weight="normal" font-style="normal" fill="#1f2937">DEPOSIT</text>
+<text x="769" y="656" font-size="12.5" text-anchor="start" font-weight="normal" font-style="normal" fill="#1f2937">WITHDRAWAL</text>
+<line x1="760" y1="668" x2="1040" y2="668" stroke="#374151" stroke-width="1.3"/>
+<path d="M300,90 L390,90" fill="none" stroke="#374151" stroke-width="1.3"/>
+<text x="308" y="82" font-size="13" text-anchor="start" font-weight="bold" font-style="normal" fill="#1d4ed8">0..1</text>
+<text x="382" y="82" font-size="13" text-anchor="end" font-weight="bold" font-style="normal" fill="#1d4ed8">1</text>
+<text x="345.0" y="108" font-size="12" text-anchor="middle" font-weight="normal" font-style="italic" fill="#1f2937">posiada</text>
+<path d="M530.0,169 L530.0,268" fill="none" stroke="#374151" stroke-width="1.3"/>
+<text x="538.0" y="187" font-size="13" text-anchor="start" font-weight="bold" font-style="normal" fill="#1d4ed8">1</text>
+<text x="538.0" y="260" font-size="13" text-anchor="start" font-weight="bold" font-style="normal" fill="#1d4ed8">0..1</text>
+<text x="522.0" y="222.5" font-size="12" text-anchor="end" font-weight="normal" font-style="italic" fill="#1f2937">posiada</text>
+<path d="M390,328 L378,321 L366,328 L378,335 Z" fill="#374151" stroke="#374151"/>
+<path d="M300,328 L366,328" fill="none" stroke="#374151" stroke-width="1.3"/>
+<text x="308" y="320" font-size="13" text-anchor="start" font-weight="bold" font-style="normal" fill="#1d4ed8">0..*</text>
+<text x="360" y="320" font-size="13" text-anchor="end" font-weight="bold" font-style="normal" fill="#1d4ed8">1</text>
+<text x="339.0" y="346" font-size="12" text-anchor="middle" font-weight="normal" font-style="italic" fill="#1f2937">zawiera</text>
+<path d="M670,328 L682,321 L694,328 L682,335 Z" fill="#374151" stroke="#374151"/>
+<path d="M694,328 L760,328" fill="none" stroke="#374151" stroke-width="1.3"/>
+<text x="700" y="320" font-size="13" text-anchor="start" font-weight="bold" font-style="normal" fill="#1d4ed8">1</text>
+<text x="752" y="320" font-size="13" text-anchor="end" font-weight="bold" font-style="normal" fill="#1d4ed8">0..*</text>
+<text x="721.0" y="346" font-size="12" text-anchor="middle" font-weight="normal" font-style="italic" fill="#1f2937">rejestruje</text>
+<path d="M900.0,464 L900.0,534" fill="none" stroke="#374151" stroke-width="1.3" stroke-dasharray="6,4" marker-end="url(#open)"/>
+</svg>
